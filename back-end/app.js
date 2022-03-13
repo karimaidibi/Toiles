@@ -12,6 +12,7 @@ const mongoose = require('mongoose');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var toileRouter = require('./routes/toileRoutes')
+var userRouter = require('./routes/userRoutes')
 
 //body parser pour les requetes
 const bodyParser = require('body-parser');
@@ -46,10 +47,21 @@ app.use(cookieParser());
 //définir ou sont les fichiers statics
 app.use(express.static(path.join(__dirname, 'public')));
 
+// configurer le CORS accepter les req HTTP a partir de l appli frontend
+// il faut les mettre avant les routes 
+app.use((req, res, next)=>{
+  // on modifie l entete
+  res.setHeader('Access-Control-Allow-Origin', '*'); // autauriser tout les domaines a acceder a mes ressources
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  next();
+});
+
 //routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/toiles', toileRouter)
+app.use('/api/users', userRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -64,7 +76,9 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json({
+    'error': 'erreur niveau application '+err.message
+  });
 });
 
 module.exports = app;

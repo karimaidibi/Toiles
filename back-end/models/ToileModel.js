@@ -8,9 +8,9 @@ const toileSchema = new Schema({
     points : {type : String, required : true},
     prix: {type : Number, required : true},
     image: {type : String, required : true},
-    dateCreation: {type : Date, default: Date.now(), required : true},
-    description : {type : String, required : true},
-    stock: {type : Number, required : true},
+    dateCreation: {type : Date, default: Date.now(), required : false},
+    description : {type : String, required : false},
+    stock: {type : Number, required : false},
     artistId: {
         type: Schema.Types.ObjectId,
         ref: 'Artist'

@@ -1,0 +1,30 @@
+[
+    {
+        "nom" : "dessin",
+        "points" : "2p",
+        "prix" : 50,
+        "image" : "https://placehold.co/300x300",
+        "artistId" : "123"
+    },
+    {
+        "nom" : "dessin",
+        "points" : "2p",
+        "prix" : 50,
+        "image" : "https://placehold.co/300x300",
+        "artistId" : "1234"
+    },
+    {
+        "nom" : "dessin",
+        "points" : "2p",
+        "prix" : 50,
+        "image" : "https://placehold.co/300x300",
+        "artistId" : "1235"
+    },
+    {
+        "nom" : "dessin",
+        "points" : "2p",
+        "prix" : 50,
+        "image" : "https://placehold.co/300x300",
+        "artistId" : "12356"
+    }
+]

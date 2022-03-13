@@ -22,7 +22,7 @@ module.exports = {
 
   //get une toile
   show: (req, res)=>{
-    const id = req.params.id;
+    const id = req.params.id; // recupere id dans les paramteres de la requete
     ToileModel.findOne({_id: id}, (err, toile)=>{
         if(err){
             return res.status(500).json({
@@ -45,22 +45,24 @@ module.exports = {
 
   //créer une toile 
   create: (req, res)=>{
+    // tester si jai une image 
     if(!req.file){
         return res.status(500).json({
             status: 500,
             message: 'toile Image Required'
         })
     }
+  
     //recuperer le body de la requete 
-    const toile = JSON.parse(req.body.toile);
-    delete toile._id;
+    const toile = JSON.parse(req.body.toile); // transformer le json recu en objet javascript 
+    delete toile._id; // si ya un id dans la reponse json recu je le supprime (va etre regenere par mongodb)
 
     var Toile = new ToileModel({
         ...toile,
          // redefinir le nom de limage en fx de la configuration faite en avance 
         image : `${req.protocol}://${req.get('host')}/images/toiles/${req.file.filename}`
     })
-    console.log(toile);
+    //console.log(toile);
     // save la toile dans mongodb
     Toile.save((err, Toile)=>{
         if(err){
@@ -76,6 +78,72 @@ module.exports = {
         })
     })
   },
+
+  //update une toile
+  update: (req,res)=>{
+    const id = req.params.id // recuperer id du produit
+    let toile = JSON.parse(req.body.toile) // recuperer lobjet 
+
+    //traitement de l'image 
+    if(req.file){ // si ya une image recu  
+      toile.image = `${req.protocol}://${req.get('host')}/images/toiles/${req.file.filename}` //recuperer limage et changer son nom
+      ToileModel.findOne({_id: id},{image: true},(err,toile)=>{
+        if(err){
+          console.log('error on find toile on update toile',err)
+          throw err;
+        }
+        const oldFileName = toile.image.split('/toiles/')[1]; // recupere le nom de lancienne image afin de la supprimer
+        fs.unlink(`public/images/toiles/${oldFileName}`, (err)=>{
+          if(err){
+            console.lof(err.message)
+          }
+        });
+      })
+    }
+    //update la toile
+    ToileModel.updateOne({_id: id},{...toile, _id: id}, (err,data)=>{
+      if(err){
+        return res.status(500).json({
+          status: 500,
+          message: 'Erreur when updating toile'
+        })
+      }
+      // si tout ce passe bien
+      return res.status(200).json({
+        status: 200,
+        message: 'Objet updated success!'
+      })
+    })
+
+  },
+
+  remove: (req,res)=>{
+    const id = req.params.id;
+    ToileModel.findByIdAndRemove(id,(err,toile)=>{
+      if(err){
+        return res.status(500).json({
+            status: 500,
+            message: 'Error when getting une toile.'
+        })
+      }
+      if(!toile){
+          return res.status(404).json({
+              status: 404,
+              message: 'toile non trouver!'
+          })
+      }
+      //traitement de l'image (supression)
+      const oldFileName = toile.image.split('/toiles/')[1]; // recupere le nom de lancienne image afin de la supprimer 
+      fs.unlink(`public/images/toiles/${oldFileName}`, (err)=>{
+        if(err){
+          console.log(err.message)
+        }
+      }) 
+
+      return res.status(204).json() 
+    })
+  }
+  
 }
 
 // exports.list = (req,res)=>{
