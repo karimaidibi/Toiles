@@ -1,0 +1,24 @@
+
+<h1 [ngStyle]="{color: 'blue'}">todo works!</h1>
+<p>Nous sommes le {{today | date: 'dd/MM/yyyy'}}</p>
+<br>
+<p> last update   {{lastUpdate | date: 'medium'}}</p>
+
+<li *ngFor="let todo of todos, let i = index">
+  <div [ngClass]="{encours:todo.todoStatus, terminee:!todo.todoStatus}">
+
+  {{todo.name | uppercase}}
+  {{todo | json}}
+  <button [disabled]="todo.todoStatus" (click)="onChangeStatus(i)"> status</button>
+  <button [disabled]="!todo.todoStatus" (click)="onChangeStatus(i)"> terminer</button>
+
+  <button  (click)="modifier(i)" *ngIf="!todo.isModif"> modifier</button>
+  <button  (click)="modifier(i)" *ngIf="todo.isModif"> terminerModif</button>
+  <br/>
+
+    <button (click)="onView(i)">details</button>
+
+
+  <input class="form-control" *ngIf="todo.isModif" [(ngModel)]="todo.name" />
+  </div>
+</li>
