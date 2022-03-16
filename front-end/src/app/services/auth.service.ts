@@ -22,7 +22,23 @@ export class AuthService {
   isAuth$ = new BehaviorSubject<boolean>(false)
 
   constructor(private http: HttpClient,
-              ) { }
+              ) {
+                this.initAuth();
+               }
+
+  initAuth(){
+    if(typeof localStorage !== "undefined"){
+      let data = localStorage.getItem('auth')
+      if (data) {
+        let donne : any = JSON.parse(data)
+        if(donne.userId && donne.token){
+          this.userId = donne.userId;
+          this.token = donne.token;
+          this.isAuth$.next(true) // tjrs connecté
+        }
+      }
+    }
+  }
 
   signup(email: any, password: any, nom: any, prenom: any){
     return new Promise((resolve,reject)=>{
@@ -64,7 +80,11 @@ export class AuthService {
           next : (authData: any)=>{
             this.token = authData.token
             this.userId = authData.userId
-            this.isAuth$.next(true)
+            this.isAuth$.next(true);
+            // save authData en local afin de stocker les infos users sur son navigateur
+            if(typeof localStorage !== "undefined"){
+              localStorage.setItem('auth', JSON.stringify(authData))
+            }
             resolve(true)
           },
           error: (err)=>{
@@ -81,7 +101,10 @@ export class AuthService {
   logout(){
     this.isAuth$.next(false);
     this.userId = null;
-    this.token = null
+    this.token = null;
+    if(typeof localStorage !== "undefined"){
+      localStorage.setItem('auth',"")
+    }
   }
 
 }
