@@ -1,1 +1,48 @@
-<p>signin works!</p>
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">CONNEXION</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+
+    <div>
+      Déjà client - Saisissez vos identifiants
+    </div>
+
+    <hr class="bg-gradient bg-dark hrHeader" style="width: 60%; height:0.5px;">
+
+    <div>
+      <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+
+      <!--alert-->
+      <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+          name="email"
+          formControlName="email"
+          >
+
+          <div id="emailHelp" class="form-text">Bienvenue !</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1"
+          name="password"
+          formControlName="password"
+          >
+        </div>
+
+        <button type="submit" class="btn btn-dark btn-lg" [disabled]="signInForm.invalid">Se connecter</button>
+
+        <hr class="hrHeader" style="width: 40%; height:3px;">
+
+        <p>Pas encore client ? - Rejoignez-nous !</p>
+        <a role="button" class="btn btn-dark btn-lg" routerLink="/signup" data-bs-dismiss="offcanvas" aria-label="Close">créer mon compte</a>
+
+      </form>
+    </div>
+  </div>
+</div>

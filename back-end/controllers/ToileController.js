@@ -6,7 +6,7 @@ module.exports = {
 
   //get toutes les toiles 
   list: (req,res)=>{
-    ToileModel.find((err,toiles)=>{
+    ToileModel.find((err,products)=>{
       if(err){
         return res.status(500).json({
           status: 500,
@@ -15,7 +15,7 @@ module.exports = {
       }
       return res.status(200).json({
         status: 200,
-        result: toiles
+        result: products
       })
     })
   },
@@ -46,12 +46,12 @@ module.exports = {
   //créer une toile 
   create: (req, res)=>{
     // tester si jai une image 
-    if(!req.file){
-        return res.status(500).json({
-            status: 500,
-            message: 'toile Image Required'
-        })
-    }
+    // if(!req.file){
+    //     return res.status(500).json({
+    //         status: 500,
+    //         message: 'toile Image Required'
+    //     })
+    // }
   
     //recuperer le body de la requete 
     const toile = JSON.parse(req.body.toile); // transformer le json recu en objet javascript 
@@ -60,7 +60,7 @@ module.exports = {
     var Toile = new ToileModel({
         ...toile,
          // redefinir le nom de limage en fx de la configuration faite en avance 
-        image : `${req.protocol}://${req.get('host')}/images/toiles/${req.file.filename}`
+        //image : `${req.protocol}://${req.get('host')}/images/toiles/${req.file.filename}`
     })
     //console.log(toile);
     // save la toile dans mongodb

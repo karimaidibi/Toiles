@@ -99,7 +99,7 @@ module.exports = {
             if(err){
                 return res.status(500).json({
                     status: 500,
-                    message: 'Error when getting toiles'
+                    message: 'Error when getting users'
                 })               
             }
             return res.status(200).json({

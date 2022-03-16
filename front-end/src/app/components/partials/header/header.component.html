@@ -1,44 +1,57 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white">
+<!--premier header-->
+<div class="container d-flex flex-wrap">
+  <ul class="nav me-auto">
+    <li class="nav-item"><a href="#" class="nav-link link-dark px-2 active" aria-current="page">PRENDRE RENDEZ-VOUS</a></li>
+    <li class="nav-item"><a href="#" class="nav-link link-dark px-2">NOUS CONTACTER</a></li>
+  </ul>
+  <ul class="nav" *ngIf="!isAuth">
+    <li class="nav-item"><a href="#" class="nav-link link-dark px-2" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">Login</a></li>
+    <li class="nav-item"><a href="#" class="nav-link link-dark px-2" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">Signup</a></li>
+    <!--sign in component-->
+    <app-signin></app-signin>
+  </ul>
+  <!--si user est connecté-->
+  <ul class="nav" *ngIf="isAuth">
+    <li class="nav-item"><a href="#" class="nav-link link-dark px-2" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">Mon compte</a></li>
+    <li class="nav-item" (click)="logout()"><a href="#" class="nav-link link-dark px-2" role="button">Log out</a></li>
+    <!-- mon compte component-->
 
-  <div class="container-fluid">
+  </ul>
+</div>
 
-    <div class="brand">
-      <a class="navbar-brand" routerLink="/home"><h3>Toiles<em>l'art est long</em></h3></a>
-    </div>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<hr class="bg-gradient bg-dark hrHeader" style="width: 60%; height:0.5px;">
 
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+<!--nav bar-->
+<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
+  <a routerLink="/home" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none ps-5">
+    Toiles<em>l'art est long</em>
+    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+  </a>
+  <!--item au milieu-->
+  <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+    <li >
+      <a routerLink="/home" class="nav-link px-2 link-secondary">Home</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle px-2 link-secondary" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        OEUVRES
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <li><a class="dropdown-item" routerLink="galerie">TOUT</a></li>
+        <li><a class="dropdown-item" routerLink="galerie">TABLEAUX</a></li>
+        <li><a class="dropdown-item" routerLink="galerie">LITHOGRAPHIE</a></li>
+      </ul>
+    </li>
+    <li><a href="#" class="nav-link px-2 link-dark">Artistes</a></li>
+  </ul>
 
-      <div class="pt-3 menu">
-        <ul class="navbar-nav">
+  <ul class="nav col-md-3">
+    <li><a href="#" class="nav-link px-2 link-secondary">Mon panier</a></li>
+    <li><a href="#" class="nav-link px-2 link-dark">Favoris</a></li>
+  </ul>
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              OEUVRES
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" routerLink="galerie">TOUT</a></li>
-              <li><a class="dropdown-item" href="#">TABLEAUX</a></li>
-              <li><a class="dropdown-item" href="#">LITHOGRAPHIE</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="artist">ARTISTES</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Prendre RDV</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
-        </ul>
-      </div>
+  <hr class="bg-gradient bg-dark" style="width: 100%; height:2px;">
 
-    </div>
+</header>
 
-  </div>
 
-</nav>
-<hr class="bg-gradient bg-dark" style="width: 100%; height:2px;">

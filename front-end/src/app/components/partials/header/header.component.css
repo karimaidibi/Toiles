@@ -1,6 +1,4 @@
-.menu{
-  padding-left: 25% ;
-}
+
 
 em{
   font-size: x-small;
@@ -9,4 +7,8 @@ em{
 .brand{
   padding-top: 1%;
   padding-left: 1%;
+}
+
+.hrHeader{
+  margin-left: 20%;
 }
