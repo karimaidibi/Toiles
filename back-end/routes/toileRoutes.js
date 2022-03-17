@@ -13,7 +13,7 @@ router.get('/:id', ToileController.show)
 router.post('/',multerConfig,ToileController.create)
 
 //update
-router.put('/:id', multerConfig ,ToileController.update)
+router.put('/:id',multerConfig ,ToileController.update)
 
 //delete
 router.delete('/:id',authAdmin,ToileController.remove)

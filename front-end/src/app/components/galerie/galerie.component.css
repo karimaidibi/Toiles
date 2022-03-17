@@ -1,0 +1,23 @@
+.ProduitsDiv{
+  /* border: 1px solid black; */
+  margin : 20px;
+}
+
+.col{
+  text-align: center;
+  padding: 30px;
+}
+
+.prix{
+  text-align: end;
+  padding-right: 10px;
+}
+
+img{
+  padding: auto;
+  height : 300px
+}
+
+/* .box{
+  border: 0.01px solid gray;
+} */

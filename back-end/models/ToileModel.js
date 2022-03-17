@@ -8,7 +8,7 @@ const product = new Schema({
     format : {type : String, required : true},
     type_produit : {type : String, required : true},
     prix: {type : Number, required : true},
-    année: {type : Number, required : false},
+    annee: {type : Number, required : false},
     stock: {type : Number, required : false},
     descriptif : {type : String, required : false},
     artistId: {

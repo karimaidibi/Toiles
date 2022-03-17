@@ -26,6 +26,7 @@ export class AuthService {
                 this.initAuth();
                }
 
+  /*Une fonction qui permet de stocker le userId et son token sur le navigateur web du client*/
   initAuth(){
     if(typeof localStorage !== "undefined"){
       let data = localStorage.getItem('auth')
@@ -40,6 +41,7 @@ export class AuthService {
     }
   }
 
+  /*Une fonction qui permet de créer un compte utilisateur */
   signup(email: any, password: any, nom: any, prenom: any){
     return new Promise((resolve,reject)=>{
       this.http.post(this.api+'/users/signup',{email: email, password: password,  nom : nom , prenom: prenom}) // ça retourne un observable
@@ -72,6 +74,7 @@ export class AuthService {
     })
   }
 
+  /*Une fonction qui permet d'authentifier lutilisateur*/
   signin(email: any, password: any){
     return new Promise((resolve,reject)=>{
       this.http.post(this.api+'/users/login', {email: email, password: password})
@@ -98,6 +101,7 @@ export class AuthService {
     });
   }
 
+  /*Une fonction qui permet de terminer la session active de l'utilsateur connecté*/
   logout(){
     this.isAuth$.next(false);
     this.userId = null;
