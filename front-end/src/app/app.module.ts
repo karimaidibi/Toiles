@@ -21,6 +21,7 @@ import { NotFoundComponent } from './components/partials/not-found/not-found.com
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { DeleteProductModalComponent } from './components/partials/modal/delete-product-modal/delete-product-modal.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     HeaderPageComponent,
     ModalComponent,
     NotFoundComponent,
+    DeleteProductModalComponent,
   ],
   imports: [
     BrowserModule,

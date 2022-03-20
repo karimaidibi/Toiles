@@ -1,12 +1,18 @@
 <mat-spinner class="mx-auto" *ngIf="loading" style="margin-top: 100px; margin-bottom:100px;"></mat-spinner>
 <div class="container" *ngIf="!loading">
-
+  <!--titre-->
+  <h3><strong>Informations personnelles</strong></h3>
+  <hr class="bg-gradient bg-dark hrHeader" style="width: 60%; height:0.5px;">
+  <!--signin-->
+  <div class = "signin">
+    Déjà client - ?<a class="px-2" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">cliquez ici pour saisir vos identifiants</a>
+  </div>
+  <app-signin></app-signin>
+  <hr class="bg-gradient bg-dark hrHeader" style="width: 60%; height:0.5px;">
+  <!--signup form-->
   <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
     <!--alert-->
     <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
-
-    <h3><strong>Informations personnelles</strong></h3>
-    <hr class="bg-gradient bg-dark hrHeader" style="width: 60%; height:0.5px;">
 
     <div class="mb-3 form-group">
       <label for="formGroupExampleInput" class="form-label">Veuillez Saisissez votre prénom :</label>

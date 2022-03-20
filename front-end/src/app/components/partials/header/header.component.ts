@@ -11,8 +11,9 @@ import { environment } from 'src/environments/environment';
 export class HeaderComponent implements OnInit, OnDestroy {
 
   isAuth!: boolean
-  isAdmin: boolean = false
-  adminId = environment.ADMIN_ID
+  private adminId = environment.ADMIN_ID
+  isAdmin!: boolean
+  userId!: any
 
   constructor(private authService : AuthService) { }
 
@@ -25,27 +26,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authService.isAuth$.subscribe(
       (bool: boolean)=>{
         this.isAuth = bool
-        this.verifyAdmin()
+        this.userId = this.authService.userId
+        if(this.userId === this.adminId){
+          this.isAdmin = true
+        }
       }
     )
   }
 
-  verifyAdmin() : void {
-    if(this.isAuth){
-      console.log(this.authService.userId)
-      console.log(this.adminId)
-      if (this.authService.userId === this.adminId){
-        this.isAdmin = true
-        console.log('ok')
-      }
-    }
-  }
-
   logout(){
     this.authService.logout()
-    if (this.isAdmin){
-      this.isAdmin = false
-    }
   }
 
   ngOnDestroy(): void {

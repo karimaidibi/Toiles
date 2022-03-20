@@ -1,0 +1,25 @@
+.container{
+  border-style: dashed;
+  border: 1px solid black;
+}
+
+.hrHeader{
+  margin-left: 20%;
+}
+
+h3{
+  text-align: center;
+  padding-top: 4%;
+}
+
+form{
+  padding-bottom: 5%;
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+img{
+  max-height: 400px;
+  width: auto;
+  padding-bottom: 5%;
+}

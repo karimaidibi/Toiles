@@ -9,11 +9,26 @@
 
 h3{
   text-align: center;
+  padding-top: 3%;
 }
 
 form{
-  padding-top: 10%;
+  padding-top: 1%;
   padding-bottom: 10%;
   padding-left: 20%;
   padding-right: 20%;
+}
+
+.signin{
+  padding-top: 1%;
+  text-align: center;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  border-bottom: 1px solid black;
 }

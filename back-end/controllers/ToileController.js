@@ -89,7 +89,7 @@ module.exports = {
   //update une toile
   update: (req,res)=>{
     const id = req.params.id // recuperer id du produit
-    let toile = JSON.parse(req.body.toile) // recuperer lobjet 
+    let toile = JSON.parse(req.body.product) // recuperer lobjet 
 
     //traitement de l'image 
     if(req.file){ // si ya une image recu  
@@ -100,11 +100,15 @@ module.exports = {
           throw err;
         }
         const oldFileName = toile.image.split('/toiles/')[1]; // recupere le nom de lancienne image afin de la supprimer
-        fs.unlink(`public/images/toiles/${oldFileName}`, (err)=>{
-          if(err){
-            console.lof(err.message)
-          }
-        });
+        const fileName = oldFileName.split('.')[0] // sans le format
+        // supprimer seulement si cest une image avec un nom nombre
+        if(typeof fileName === Number){
+          fs.unlink(`public/images/toiles/${oldFileName}`, (err)=>{
+            if(err){
+              console.log(err.message)
+            }
+          }) 
+        }
       })
     }
     //update la toile
@@ -140,13 +144,16 @@ module.exports = {
           })
       }
       //traitement de l'image (supression)
-      const oldFileName = toile.image.split('/toiles/')[1]; // recupere le nom de lancienne image afin de la supprimer 
-      fs.unlink(`public/images/toiles/${oldFileName}`, (err)=>{
-        if(err){
-          console.log(err.message)
-        }
-      }) 
-
+      const oldFileName = toile.image.split('/toiles/')[1]; // recupere le nom de lancienne image afin de la supprimer
+      const fileName = oldFileName.split('.')[0] // sans le format
+      // supprimer seulement si cest une image avec un nom nombre
+      if(typeof fileName === Number){
+        fs.unlink(`public/images/toiles/${oldFileName}`, (err)=>{
+          if(err){
+            console.log(err.message)
+          }
+        }) 
+      }
       return res.status(204).json() 
     })
   }

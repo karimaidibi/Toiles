@@ -95,7 +95,7 @@ export class ProductService {
       }
       productData.append('product', JSON.stringify(product))
       //put
-      this.http.put(this.api+'/toiles/+id',productData).subscribe({
+      this.http.put(this.api+'/toiles/'+id,productData).subscribe({
         next:(data:any)=>{
           if(data.status===200){
             this.getProducts()

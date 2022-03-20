@@ -4,12 +4,17 @@
   <!--row-->
   <div class="p-3 row row-cols-2 row-cols-lg-3 g-2 g-lg-5">
       <!--column-->
-      <div *ngFor="let product of products" class="col" [routerLink]="['/single-product',product._id]">
-          <div class="box bg-body shadow-sm border hover13">
+      <div *ngFor="let product of products" class="col" >
+          <div class="box bg-body shadow-sm border hover13" [routerLink]="['/single-product',product._id]">
                 <figure><img [src]="product.image" class="img-fluid" alt="..."></figure>
               <h4 class="pt-3">{{product.produit}}</h4>
               <p>{{product.type_produit}}</p>
               <p class="prix">{{product.prix}} €</p>
+          </div>
+          <div class="btn-group pt-2" role="group" *ngIf="isAdmin">
+            <button  type="button" class="btn btn-dark" [routerLink]="['/edit-product', product._id]">Modifier</button>
+            <button  type="button" class="btn btn-dark" data-bs-toggle="modal" [attr.data-bs-target]="'#delete-product-'+product._id">Supprimer</button>
+            <app-delete-product-modal [product]="product"></app-delete-product-modal>
           </div>
       </div>
   </div>

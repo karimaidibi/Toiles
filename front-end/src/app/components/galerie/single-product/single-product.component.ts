@@ -1,6 +1,6 @@
 import { ProductService } from './../../../services/product.service';
 import { Product } from './../../../models/product';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
@@ -29,7 +29,7 @@ export class SingleProductComponent implements OnInit {
         })
         .catch((err)=>{
           this.router.navigate(['/not-found'])
-          console.log(err)
+          console.log(err.message)
         })
       },
       error: (err)=>{
@@ -41,5 +41,6 @@ export class SingleProductComponent implements OnInit {
       }
     })
   }
+
 
 }
