@@ -1,3 +1,7 @@
+import { ProductService } from './../../../services/product.service';
+import { Product } from './../../../models/product';
+import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +11,110 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddProductComponent implements OnInit {
 
-  constructor() { }
+  productForm!: FormGroup;
+  errorMessage!: string;
+  loading: boolean = false
+  imagePreview!: string
+
+  constructor(private formBuilder: FormBuilder,
+    private router: Router,
+    private productService : ProductService) { }
 
   ngOnInit(): void {
+    this.initproductForm()
+  }
+
+  initproductForm(){
+    this.productForm = this.formBuilder.group({
+      /*validator required, email, mail length, max length*/
+      produit: this.formBuilder.control(null,[Validators.required]),
+      format: this.formBuilder.control(null,[Validators.required]),
+      type_produit: this.formBuilder.control(null,[Validators.required]),
+      prix: this.formBuilder.control(null,[Validators.required]),
+      annee: this.formBuilder.control(null,[Validators.required]),
+      stock: this.formBuilder.control(null,[Validators.required]),
+      image: this.formBuilder.control(null,[Validators.required]),
+      artistId: this.formBuilder.control(null),
+      descriptif: this.formBuilder.control(null),
+
+    })
+  }
+
+  onSubmit() :void{
+    this.loading = true
+    let product = new Product()
+    let produit = this.productForm.get('produit');
+    if (produit){
+      product.produit = produit.value
+    }
+    let format = this.productForm.get('format');
+    if(format){
+      product.format = format.value
+    }
+    let type_produit = this.productForm.get('type_produit');
+    if(type_produit){
+      product.type_produit = type_produit.value
+    }
+    let prix = this.productForm.get('prix');
+    if(prix){
+      product.prix = prix.value
+    }
+    let annee = this.productForm.get('annee');
+    if(annee){
+      product.annee = annee.value
+    }
+    let stock = this.productForm.get('stock');
+    if(stock){
+      product.stock = stock.value
+    }
+    let artistId = this.productForm.get('artistId');
+    if(artistId){
+      product.artistId = artistId.value
+    }
+    let descriptif = this.productForm.get('descriptif');
+    if(descriptif){
+      product.descriptif = descriptif.value
+    }
+    product.image = ' ';
+
+    // save product
+    this.productService.createNewProduct(product,this.productForm.get('image')?.value)
+    .then(()=>{
+      this.productForm.reset()
+      this.loading = false
+      this.router.navigate(['/galerie'])
+    })
+    .catch((err)=>{
+      console.log(product)
+      console.log(this.productForm.get('image')?.value)
+      this.loading = false
+      this.errorMessage = err.message
+      console.log(err)
+    })
+  }
+
+  onImagePick(event: Event){
+    // récupérer le fichier image
+    let file = (event.target as HTMLInputElement)
+    if (file.files){
+      // recuperer limage
+     let f = file.files[0]
+     // mettre ajour limage dans le formulaire
+     this.productForm.get('image')?.patchValue(f)
+     // rendre le champ image valide dans le formulaire
+     this.productForm.get('image')?.updateValueAndValidity();
+     // lire le fichier et l'afficher
+     const reader = new FileReader();
+     reader.onload = ()=>{
+       if(this.productForm.get('image')?.valid){
+        this.imagePreview = reader.result as string
+       }else{
+         this.imagePreview = ""
+       }
+     }
+     // comment je veux lire le fichier
+     reader.readAsDataURL(f)
+    }
   }
 
 }

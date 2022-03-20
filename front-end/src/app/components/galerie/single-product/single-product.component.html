@@ -5,22 +5,22 @@
       <!--column image-->
       <div  class="col">
           <div class="box bg-body shadow-sm border">
-              <img src="https://placeimg.com/640/480/nature" class="img-fluid" alt="...">
+              <img [src]="product.image" class="img-fluid" alt="...">
           </div>
       </div>
       <!--column detail list-->
       <div class="col bg-body shadow border">
         <!--list de detail-->
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">NOM : </li>
-          <li class="list-group-item">FORMAT : </li>
-          <li class="list-group-item">TYPE : </li>
-          <li class="list-group-item">ANNEE : </li>
-          <li class="list-group-item">ARTISTE : </li>
-          <li class="list-group-item">STOCK : </li>
-          <h4 class="price">4800 €</h4>
+          <li class="list-group-item">NOM : {{product.produit}}</li>
+          <li class="list-group-item">FORMAT : {{product.format}}</li>
+          <li class="list-group-item">TYPE : {{product.type_produit}}</li>
+          <li class="list-group-item">ANNEE : {{product.annee}}</li>
+          <li class="list-group-item">ARTISTE :</li>
+          <li class="list-group-item">STOCK : {{product.stock}}</li>
+          <h4 class="price">{{product.prix}} €</h4>
           <button class="btn btn-dark mx-auto">Ajouter au panier</button>
-          <i class="bi bi-heart mx-auto pt-3"></i>
+          <i class="bi bi-emoji-heart-eyes mx-auto pt-3"></i>
         </ul>
       </div>
   </div>

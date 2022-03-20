@@ -10,7 +10,7 @@ router.get('/',ToileController.list);
 router.get('/:id', ToileController.show)
 
 //post
-router.post('/',multerConfig,ToileController.create)
+router.post('/',authAdmin,multerConfig,ToileController.create)
 
 //update
 router.put('/:id',multerConfig ,ToileController.update)

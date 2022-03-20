@@ -13,6 +13,7 @@ export class SignupComponent implements OnInit {
 
   signUpForm!: FormGroup;
   errorMessage!: string;
+  loading: boolean = false
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
@@ -34,6 +35,7 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() :void{
+    this.loading = true
 
     let email = this.signUpForm.get('email');
     if (email){
@@ -53,9 +55,11 @@ export class SignupComponent implements OnInit {
     }
     this.authService.signup(email,password,lastname,firstname)
     .then(()=>{
+      this.loading = false
       this.router.navigate(['/home'])
     })
     .catch((err)=>{
+      this.loading = false
       this.errorMessage = err.message
     })
   }

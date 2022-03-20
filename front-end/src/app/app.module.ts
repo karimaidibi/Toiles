@@ -19,6 +19,8 @@ import { HeaderPageComponent } from './components/partials/header-page/header-pa
 import { ModalComponent } from './components/partials/modal/modal.component';
 import { NotFoundComponent } from './components/partials/not-found/not-found.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     // interceptor, sa classe,

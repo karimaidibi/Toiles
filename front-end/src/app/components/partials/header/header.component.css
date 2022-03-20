@@ -12,3 +12,11 @@ em{
 .hrHeader{
   margin-left: 20%;
 }
+
+a:hover {
+  border-bottom: 1px solid black;
+}
+
+.adminTool a:hover{
+  border-bottom: 1px solid white;
+}

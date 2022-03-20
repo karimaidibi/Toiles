@@ -1,4 +1,7 @@
+import { ProductService } from './../../../services/product.service';
+import { Product } from './../../../models/product';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-single-product',
@@ -7,9 +10,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SingleProductComponent implements OnInit {
 
-  constructor() { }
+  product!: Product
+
+  constructor(private productService: ProductService,
+    private route: ActivatedRoute,
+    private router :  Router) { }
 
   ngOnInit(): void {
+    //scroll sur le haut
+    // window.scroll(0,0)
+    // récuperer l'id depuis la route
+    this.route.params.subscribe({
+      next: (params : Params)=>{
+        const id = params['id'];
+        this.productService.getProductById(id)
+        .then((product : any)=>{
+          this.product = product
+        })
+        .catch((err)=>{
+          this.router.navigate(['/not-found'])
+          console.log(err)
+        })
+      },
+      error: (err)=>{
+        this.router.navigate(['/not-found'])
+        console.log(err)
+      },
+      complete : ()=>{
+        console.log("complete")
+      }
+    })
   }
 
 }

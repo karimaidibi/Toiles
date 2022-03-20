@@ -1,4 +1,3 @@
-import { AuthInfo } from './../models/auth-info';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';

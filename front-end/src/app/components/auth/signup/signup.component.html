@@ -1,4 +1,5 @@
-<div class="container ">
+<mat-spinner class="mx-auto" *ngIf="loading" style="margin-top: 100px; margin-bottom:100px;"></mat-spinner>
+<div class="container" *ngIf="!loading">
 
   <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
     <!--alert-->
@@ -9,14 +10,14 @@
 
     <div class="mb-3 form-group">
       <label for="formGroupExampleInput" class="form-label">Veuillez Saisissez votre prénom :</label>
-      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder"
+      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="votre prénom (optionnel)"
         name="firstname"
         formControlName="firstname" >
     </div>
 
     <div class="mb-3 form-group">
       <label for="formGroupExampleInput2" class="form-label">Veuillez Saisissez votre nom :</label>
-      <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder"
+      <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="votre nom (optionnel)"
         name="lastname"
         formControlName="lastname"
         >

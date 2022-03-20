@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  api: 'http://localhost:3000/api'
+  api: 'http://localhost:3000/api',
+  ADMIN_ID: '6233bfd71d245ea30e836b19'
 };
 
 /*

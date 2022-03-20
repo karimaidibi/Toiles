@@ -61,7 +61,7 @@ module.exports = {
     }
   
     //recuperer le body de la requete 
-    const toile = JSON.parse(req.body.toile); // transformer le json recu en objet javascript 
+    const toile = JSON.parse(req.body.product); // transformer le json recu en objet javascript 
     delete toile._id; // si ya un id dans la reponse json recu je le supprime (va etre regenere par mongodb)
 
     var Toile = new ToileModel({

@@ -1,11 +1,12 @@
+<mat-spinner class="mx-auto" *ngIf="loading" style="margin-top: 100px; margin-bottom:100px;"></mat-spinner>
 <!--les produits-->
 <div class="mt-4 ProduitsDiv">
   <!--row-->
   <div class="p-3 row row-cols-2 row-cols-lg-3 g-2 g-lg-5">
       <!--column-->
-      <div *ngFor="let product of products" class="col">
-          <div class="box bg-body shadow-sm border">
-              <img [src]="product.image" class="img-fluid" alt="...">
+      <div *ngFor="let product of products" class="col" [routerLink]="['/single-product',product._id]">
+          <div class="box bg-body shadow-sm border hover13">
+                <figure><img [src]="product.image" class="img-fluid" alt="..."></figure>
               <h4 class="pt-3">{{product.produit}}</h4>
               <p>{{product.type_produit}}</p>
               <p class="prix">{{product.prix}} €</p>

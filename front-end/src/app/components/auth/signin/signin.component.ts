@@ -12,6 +12,7 @@ export class SigninComponent implements OnInit {
 
   signInForm!: FormGroup;
   errorMessage!: string;
+  loading: boolean = false
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
@@ -30,6 +31,7 @@ export class SigninComponent implements OnInit {
   }
 
   onSubmit() :void{
+    this.loading = true
 
     let email = this.signInForm.get('email');
     if (email){
@@ -41,12 +43,20 @@ export class SigninComponent implements OnInit {
     }
     this.authService.signin(email,password)
     .then(()=>{
+      this.loading = false
       this.router.navigate(['/home'])
+      this.refreshPage()
     })
     .catch((err)=>{
+      this.loading = false
       this.errorMessage = err.message
     })
-    }
+  }
+
+  // Function to reload the application
+  refreshPage() {
+    window.location.reload();
+  }
 
 
 }
