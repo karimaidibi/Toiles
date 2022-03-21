@@ -59,7 +59,13 @@
   </ul>
 
   <ul class="nav col-md-3">
-    <li><a href="#" class="nav-link px-2 link-dark">Mon panier</a></li>
+    <li><a routerLink="cart" class="nav-link px-2 link-dark">
+      Mon panier
+      <span class="position-absolute translate-middle badge rounded-pill bg-dark pb-1" *ngIf="resume">
+          {{resume.quantity}}
+        <span class="visually-hidden">unread messages</span>
+      </span>
+    </a></li>
     <li><a href="#" class="nav-link px-2 link-dark">Favoris</a></li>
   </ul>
 

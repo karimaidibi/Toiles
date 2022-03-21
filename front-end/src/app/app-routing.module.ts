@@ -14,10 +14,9 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {path:'home', component: HomeComponent},
   {path:'signup', component: SignupComponent},
-  {path:'signin', component: SigninComponent},
   {path:'galerie', component: GalerieComponent},
   {path:'add-product', component: AddProductComponent, canActivate: [AuthGuard]},
-  {path:'cart/:id', component: CartComponent},
+  {path:'cart', component: CartComponent, canActivate: [AuthGuard]},
   {path:'edit-product/:id', component: EditProductComponent, canActivate: [AuthGuard]},
   {path:'single-product/:id', component: SingleProductComponent},
   {path:'not-found', component: NotFoundComponent},

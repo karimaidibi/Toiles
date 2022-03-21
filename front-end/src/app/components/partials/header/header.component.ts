@@ -1,3 +1,5 @@
+import { CartService } from './../../../services/cart.service';
+import { Cart } from './../../../models/cart';
 import { BehaviorSubject } from 'rxjs';
 import { AuthService } from './../../../services/auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -8,20 +10,33 @@ import { environment } from 'src/environments/environment';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit {
 
   isAuth!: boolean
   private adminId = environment.ADMIN_ID
   isAdmin!: boolean
   userId!: any
+  resume!: any
 
-  constructor(private authService : AuthService) { }
+
+  constructor(private authService : AuthService,
+    private cartService: CartService) { }
 
   ngOnInit(): void {
+    this.cartService.cart$.subscribe({
+      next: (cart: Cart)=>{
+        this.resume = cart.resume
+      },
+      error : (err)=>{
+        console.log(err)
+      }
+    })
+    this.cartService.emitCart()
+
     this.VerifSignIn()
   }
 
-  // assigner is auth a true si user est connecté
+  //assigner is auth a true si user est connecté
   VerifSignIn() : void{
     this.authService.isAuth$.subscribe(
       (bool: boolean)=>{
@@ -36,10 +51,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   logout(){
     this.authService.logout()
-  }
-
-  ngOnDestroy(): void {
-      this.authService.isAuth$.unsubscribe()
   }
 
 }

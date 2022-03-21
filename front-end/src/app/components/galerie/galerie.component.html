@@ -5,11 +5,17 @@
   <div class="p-3 row row-cols-2 row-cols-lg-3 g-2 g-lg-5">
       <!--column-->
       <div *ngFor="let product of products" class="col" >
-          <div class="box bg-body shadow-sm border hover13" [routerLink]="['/single-product',product._id]">
+          <div class="box bg-body shadow-sm border hover13">
+            <!--router on click-->
+              <div class="cursorr" [routerLink]="['/single-product',product._id]">
                 <figure><img [src]="product.image" class="img-fluid" alt="..."></figure>
+              </div>
+              <!--infos-->
               <h4 class="pt-3">{{product.produit}}</h4>
               <p>{{product.type_produit}}</p>
               <p class="prix">{{product.prix}} €</p>
+              <!--cart button-->
+              <button type="button" class="btn" (click)="addToCart(product)"><i class="bi bi-cart-plus-fill"></i></button>
           </div>
           <div class="btn-group pt-2" role="group" *ngIf="isAdmin">
             <button  type="button" class="btn btn-dark" [routerLink]="['/edit-product', product._id]">Modifier</button>

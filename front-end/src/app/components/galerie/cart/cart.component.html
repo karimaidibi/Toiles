@@ -1,22 +1,40 @@
-<div class="mb-3 mx-auto" style="max-width: 700px; border-bottom: 1px solid black;">
+<div *ngIf="!items.length" style="text-align: center;">
+  <h4>
+    Votre panier est vide ! <br/>
+    <button type="button" class="btn btn-dark mt-3" routerLink="/galerie">Consulter la galerie</button>
+  </h4>
+</div>
+<!--panier-->
+<div class="mb-3 mx-auto" style="max-width: 700px; border-bottom: 1px solid black;" *ngFor="let item of items">
   <div class="row g-0">
     <div class="col-md-4">
-      <img src="https://placeimg.com/640/480/people" class="img-fluid rounded-start" alt="...">
+      <img [src]="item.product.image" class="img-fluid rounded-start" alt="...">
     </div>
     <div class="col-md-7">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        FORMAT : <br/>
-        TYPE : <br/>
-        ANNEE : <br/>
-        ARTISTE : <br/>
+        <h5 class="card-title">{{item.product.produit}}</h5>
+        FORMAT : {{item.product.format}}<br/>
+        TYPE : {{item.product.type_produit}}<br/>
+        ANNEE : {{item.product.annee}}<br/>
+        ARTISTE : {{item.product.artistId}}<br/>
+        QUANTITE :
+        <div class="p-2 d-flex justify-content-start">
+          <input type="number" class="form-control" style="max-width: 60px;" value="{{item.quantity}}" disabled>
+          <div class="btn-group-vertical" style="margin-left: -20px;">
+            <button type="button" class="btn btn-dark" (click)="addToCart(item.product)"><i class="bi bi-plus-lg"></i></button>
+            <button type="button" class="btn btn-dark" (click)="removeOne(item.product)"><i class="bi bi-dash-lg"></i></button>
+          </div>
+        </div>
+        PRIX UNITAIRE: {{item.product.prix}}<br/>
+        PRIX U TTC : {{item.product.prix*1.2}}<br/>
+        TVA : {{item.product.prix*0.2*item.quantity}}<br/>
         <div class="priceDiv">
-          PRIX : <p class="price">4800 € <i class="bi bi-check-lg"></i></p>
+          PRIX TOTAL TTC: <p class="price">{{item.product.prix*item.quantity*1.2}} <i class="bi bi-check-lg"></i></p>
         </div>
       </div>
     </div>
     <div class="col-md-1">
-      <button type="button" class="btn btn-close" aria-label="Close"></button>
+      <button type="button" class="btn btn-close" aria-label="Close" (click)="removeMany(item.product)"></button>
     </div>
   </div>
 </div>

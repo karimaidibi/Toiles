@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
@@ -21,6 +22,7 @@ export class AuthService {
   isAuth$ = new BehaviorSubject<boolean>(false)
 
   constructor(private http: HttpClient,
+    private router : Router
               ) {
                 this.initAuth();
                }
@@ -87,6 +89,7 @@ export class AuthService {
             if(typeof localStorage !== "undefined"){
               localStorage.setItem('auth', JSON.stringify(authData))
             }
+            this.router.navigate(['/home'])
             resolve(true)
           },
           error: (err)=>{
@@ -107,6 +110,7 @@ export class AuthService {
     this.token = null;
     if(typeof localStorage !== "undefined"){
       localStorage.setItem('auth',"")
+      localStorage.setItem('cart','')
     }
   }
 

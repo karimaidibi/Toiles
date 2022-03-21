@@ -6,9 +6,11 @@
 .col{
   text-align: center;
   padding: 30px;
-  cursor: pointer;
 }
 
+.cursorr{
+  cursor: pointer;
+}
 
 
 .prix{

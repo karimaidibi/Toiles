@@ -3,9 +3,9 @@ export class Product {
   produit !: String;
   format !: String;
   type_produit !: String;
-  prix!: Number;
-  annee!: Number;
-  stock!: Number;
+  prix!: number;
+  annee!: number;
+  stock!: number;
   descriptif !: string;
   artistId!: string
   image!: String;

@@ -1,3 +1,4 @@
+import { CartService } from './../../services/cart.service';
 import { AuthService } from './../../services/auth.service';
 import { Router } from '@angular/router';
 import { Product } from './../../models/product';
@@ -19,13 +20,18 @@ export class GalerieComponent implements OnInit, OnDestroy {
   loading: boolean = true
   private adminId = environment.ADMIN_ID
   isAdmin!: boolean
+  isAuth!: boolean
 
   constructor(private productService: ProductService,
     private router : Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private cartService: CartService
               ) { }
 
   ngOnInit(): void {
+    // verify signin
+    this.verifSignIn()
+
     // get user id
     this.userId = this.authService.userId
     if(this.userId === this.adminId){
@@ -48,9 +54,26 @@ export class GalerieComponent implements OnInit, OnDestroy {
     this.productService.getProducts()
   }
 
+  //assigner is auth a true si user est connecté
+  verifSignIn() : void{
+    this.authService.isAuth$.subscribe(
+      (bool: boolean)=>{
+        this.isAuth = bool
+      }
+    )
+  }
+
+  addToCart(product: Product){
+    if(this.isAuth){
+      this.cartService.addToCart(product)
+    }else{
+      this.router.navigate(['/signup'])
+    }
+  }
 
   ngOnDestroy(): void {
       this.productSub.unsubscribe()
+
   }
 
 }
