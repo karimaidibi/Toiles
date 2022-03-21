@@ -19,7 +19,7 @@
           <li class="list-group-item">ARTISTE :</li>
           <li class="list-group-item">STOCK : {{product.stock}}</li>
           <h4 class="price">{{product.prix}} €</h4>
-          <button class="btn btn-dark mx-auto">Ajouter au panier</button>
+          <button class="btn btn-dark mx-auto" (click)="addToCart(product)">Ajouter au panier</button>
           <i class="bi bi-emoji-heart-eyes mx-auto pt-3"></i>
         </ul>
       </div>

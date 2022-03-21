@@ -1,0 +1,47 @@
+.ProduitsDiv{
+  /* border: 1px solid black; */
+  margin : 20px;
+}
+
+.col{
+  text-align: center;
+  padding: 30px;
+}
+
+.cursorr{
+  cursor: pointer;
+}
+
+
+.prix{
+  text-align: end;
+  padding-right: 10px;
+}
+
+img{
+  padding: auto;
+  height : 300px
+}
+
+/* Flashing */
+.hover13 figure:hover img {
+	opacity: 1;
+	-webkit-animation: flash 1.5s;
+	animation: flash 1.5s;
+}
+@-webkit-keyframes flash {
+	0% {
+		opacity: .4;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes flash {
+	0% {
+		opacity: .4;
+	}
+	100% {
+		opacity: 1;
+	}
+}

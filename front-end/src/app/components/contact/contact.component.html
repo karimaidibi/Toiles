@@ -1,0 +1,65 @@
+<!--titre-->
+<h3><strong>CONTACT</strong></h3>
+<hr class="bg-gradient bg-dark hrHeader" style="width: 60%; height:0.5px;">
+<div class="container-fluid">
+  <div class="container">
+    <mat-spinner class="mx-auto" *ngIf="loading" style="margin-top: 100px; margin-bottom:100px;"></mat-spinner>
+
+    <!--infos-->
+    <div style="text-align: center;">
+      Tél : + 7 83 33 41 03 <br/>
+      Mail : aidibikarim1999@hotmail.com<br/>
+      <button type="button" class="btn btn-lg btn-dark mt-1" style="width: 50%;"> Prendre un endez-vous</button>
+    </div>
+
+    <!--form-->
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+      <!--alert-->
+      <div class="alert alert-danger alert-dismissible" *ngIf="errorMessage">{{errorMessage}}</div>
+      <div class="alert alert-success alert-dismissible" *ngIf="successMessage">{{errorMessage}}</div>
+      <!--nom-->
+      <div class="mb-3 form-group">
+        <label for="formGroupExampleInput" class="form-label">Veuillez Saisissez votre nom :</label>
+        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nuage"
+          name="nom"
+          formControlName="nom" >
+      </div>
+      <!--prenom-->
+      <div class="mb-3 form-group">
+        <label for="formGroupExampleInput2" class="form-label">Veuillez Saisissez votre prénom :</label>
+        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="90x80..."
+          name="prenom"
+          formControlName="prenom"
+          >
+      </div>
+      <!--email-->
+      <div class="mb-3 form-group">
+        <label for="exampleInputEm" class="form-label">Veuillez Saisissez votre adresse email de contact :</label>
+        <input type="email" class="form-control" id="exampleInputEm" aria-describedby="emailHelp"
+        name="email"
+        formControlName="email">
+      </div>
+      <!--sujet-->
+      <div class="mb-3 form-group">
+        <label for="formGroupExampleInputt" class="form-label">Veuillez Saisissez le sujet :</label>
+        <input type="text" class="form-control" id="formGroupExampleInputt" placeholder="90x80..."
+          name="sujet"
+          formControlName="sujet"
+          >
+      </div>
+      <!--description-->
+      <div class="form-floating">
+        <textarea class="form-control" placeholder="j'aime beaucoup ce site !" id="floatingTextarea2" style="height: 100px"
+        name="message"
+        formControlName="message"></textarea>
+        <label for="floatingTextarea2">votre message</label>
+      </div>
+      <div style="text-align: center;">
+        <button class="btn btn-dark mt-1" style="width: 100%;" [disabled]="contactForm.invalid">Envoyer votre message</button>
+      </div>
+    </form>
+
+  </div>
+
+</div>
+

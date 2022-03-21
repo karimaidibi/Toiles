@@ -5,7 +5,7 @@
   <div class="p-3 row row-cols-2 row-cols-lg-3 g-2 g-lg-5">
       <!--column-->
       <div *ngFor="let product of products" class="col" >
-          <div class="box bg-body shadow-sm border hover13">
+          <div class="box bg-body shadow-lg border hover13">
             <!--router on click-->
               <div class="cursorr" [routerLink]="['/single-product',product._id]">
                 <figure><img [src]="product.image" class="img-fluid" alt="..."></figure>

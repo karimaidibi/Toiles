@@ -16,7 +16,7 @@
 <div class="container d-flex flex-wrap" *ngIf="!isAdmin">
   <ul class="nav me-auto">
     <li class="nav-item"><a href="#" class="nav-link link-dark px-2 active" aria-current="page">PRENDRE RENDEZ-VOUS</a></li>
-    <li class="nav-item"><a href="#" class="nav-link link-dark px-2">NOUS CONTACTER</a></li>
+    <li class="nav-item"><a routerLink="/contact" class="nav-link link-dark px-2">NOUS CONTACTER</a></li>
   </ul>
   <ul class="nav" *ngIf="!isAuth">
     <li class="nav-item"><a href="#" class="nav-link link-dark px-2" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">Login</a></li>
@@ -55,7 +55,7 @@
         <li><a class="dropdown-item" routerLink="/galerie">LITHOGRAPHIE</a></li>
       </ul>
     </li>
-    <li><a href="#" class="nav-link px-2 link-dark">Artistes</a></li>
+    <li><a routerLink="/artists" class="nav-link px-2 link-dark">Artistes</a></li>
   </ul>
 
   <ul class="nav col-md-3">

@@ -14,6 +14,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var toileRouter = require('./routes/toileRoutes')
 var userRouter = require('./routes/userRoutes')
+var artistRouter = require('./routes/artistRoutes')
+var contactRouter = require('./routes/contactRoutes')
 
 //body parser pour les requetes
 const bodyParser = require('body-parser');
@@ -63,6 +65,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/toiles', toileRouter)
 app.use('/api/users', userRouter)
+app.use('/api/artistes',artistRouter)
+app.use('/api/contact',contactRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

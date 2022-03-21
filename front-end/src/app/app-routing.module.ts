@@ -1,3 +1,5 @@
+import { ContactComponent } from './components/contact/contact.component';
+import { ArtistComponent } from './components/artist/artist.component';
 import { AuthGuard } from './services/auth.guard';
 import { NotFoundComponent } from './components/partials/not-found/not-found.component';
 import { SingleProductComponent } from './components/galerie/single-product/single-product.component';
@@ -20,6 +22,8 @@ const routes: Routes = [
   {path:'edit-product/:id', component: EditProductComponent, canActivate: [AuthGuard]},
   {path:'single-product/:id', component: SingleProductComponent},
   {path:'not-found', component: NotFoundComponent},
+  {path:'artists', component: ArtistComponent},
+  {path:'contact', component: ContactComponent},
   {path:'', component: HomeComponent},
   // si tout ce qui es tavant ne marche pas faire ceci
   {path:'**', pathMatch:'full', redirectTo: 'not-found'},

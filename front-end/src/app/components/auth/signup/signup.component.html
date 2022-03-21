@@ -13,33 +13,33 @@
   <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
     <!--alert-->
     <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
-
+    <!-- first name-->
     <div class="mb-3 form-group">
-      <label for="formGroupExampleInput" class="form-label">Veuillez Saisissez votre prénom :</label>
-      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="votre prénom (optionnel)"
+      <label for="firstname" class="form-label">Veuillez Saisissez votre prénom :</label>
+      <input type="text" class="form-control" id="firstname" placeholder="votre prénom (optionnel)"
         name="firstname"
         formControlName="firstname" >
     </div>
 
     <div class="mb-3 form-group">
-      <label for="formGroupExampleInput2" class="form-label">Veuillez Saisissez votre nom :</label>
-      <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="votre nom (optionnel)"
+      <label for="lastname" class="form-label">Veuillez Saisissez votre nom :</label>
+      <input type="text" class="form-control" id="lastname" placeholder="votre nom (optionnel)"
         name="lastname"
         formControlName="lastname"
         >
     </div>
 
     <div class="mb-3 form-group">
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+      <label for="mailInout" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="mailInput" aria-describedby="emailHelp"
       name="email"
       formControlName="email">
 
     </div>
 
     <div class="mb-3 form-group">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1"
+      <label for="passwordSignUp" class="form-label">Password</label>
+      <input type="password" class="form-control" id="passwordSignUp"
       name="password"
       formControlName="password">
       <div id="passwordCaractere" class="form-text">le mote de passe doit contenir au moins 6 caractères, soyez créatifs :-</div>

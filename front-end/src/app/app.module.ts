@@ -22,6 +22,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { DeleteProductModalComponent } from './components/partials/modal/delete-product-modal/delete-product-modal.component';
+import { ArtistComponent } from './components/artist/artist.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { RdvComponent } from './components/contact/rdv/rdv.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,9 @@ import { DeleteProductModalComponent } from './components/partials/modal/delete-
     ModalComponent,
     NotFoundComponent,
     DeleteProductModalComponent,
+    ArtistComponent,
+    ContactComponent,
+    RdvComponent,
   ],
   imports: [
     BrowserModule,

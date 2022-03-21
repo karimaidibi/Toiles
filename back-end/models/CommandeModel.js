@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 //create a schema
-const commandechema = new Schema({
+const commande = new Schema({
     date: {type : Date, default: Date.now(), required : true},
     prix: {type : Number, required : true},
     userId: {
@@ -16,4 +16,4 @@ const commandechema = new Schema({
 });
 
 // exporter le model de données
-module.exports = mongoose.model('Commande', commandechema)
+module.exports = mongoose.model('Commande', commande)
