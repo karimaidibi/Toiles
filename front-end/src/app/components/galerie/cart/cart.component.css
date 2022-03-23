@@ -16,3 +16,17 @@
 button{
   margin-left: 20px;
 }
+
+.resume{
+  text-align: right;
+  max-width: 700px;
+  background-color: beige;
+  margin-top: 2%;
+}
+
+.payer{
+  max-width: 700px;
+  margin-top: 1%;
+  background-color: black;
+
+}

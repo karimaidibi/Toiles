@@ -1,5 +1,10 @@
 <!--les produits-->
 <div class="mt-4 ProduitsDiv" *ngIf="product">
+  <!--error on get artist-->
+  <div *ngIf="errorArtisteMessage" class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Petite erreur</strong> {{errorArtisteMessage}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
   <!--row-->
   <div class="p-3 row row-cols-1 row-cols-lg-2 g-2 g-lg-4">
       <!--column image-->
@@ -16,7 +21,7 @@
           <li class="list-group-item">FORMAT : {{product.format}}</li>
           <li class="list-group-item">TYPE : {{product.type_produit}}</li>
           <li class="list-group-item">ANNEE : {{product.annee}}</li>
-          <li class="list-group-item">ARTISTE :</li>
+          <li *ngIf="artist" class="list-group-item">ARTISTE : {{artist.prenom}}  {{artist.nom}}</li>
           <li class="list-group-item">STOCK : {{product.stock}}</li>
           <h4 class="price">{{product.prix}} €</h4>
           <button class="btn btn-dark mx-auto" (click)="addToCart(product)">Ajouter au panier</button>

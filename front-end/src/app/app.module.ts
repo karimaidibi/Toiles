@@ -25,6 +25,8 @@ import { DeleteProductModalComponent } from './components/partials/modal/delete-
 import { ArtistComponent } from './components/artist/artist.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { RdvComponent } from './components/contact/rdv/rdv.component';
+import { ListRdvComponent } from './components/list-rdv/list-rdv.component';
+import { FavorisComponent } from './components/galerie/favoris/favoris.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { RdvComponent } from './components/contact/rdv/rdv.component';
     ArtistComponent,
     ContactComponent,
     RdvComponent,
+    ListRdvComponent,
+    FavorisComponent,
   ],
   imports: [
     BrowserModule,

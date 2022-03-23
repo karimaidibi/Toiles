@@ -4,14 +4,13 @@ const Schema = mongoose.Schema
 
 //create a schema
 const commande = new Schema({
-    date: {type : Date, default: Date.now(), required : true},
-    prix: {type : Number, required : true},
+    date: {type : Date, default: Date.now(), required : false},
+    items: {type : Array, required : true},
+    resume: {type : Object, required : true},
     userId: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    toiles: {type : Array, required : false},
-    lithographies: {type : Array, required : false},
 
 });
 

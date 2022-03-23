@@ -38,4 +38,23 @@ export class ArtistService {
 
     })
   }
+
+  getArtistById(id: string){
+    return new Promise((resolve,reject)=>{
+      this.http.get(this.api+'/artistes/'+id).subscribe({
+        next: (data: any)=>{
+          if(data.status===200){
+            resolve(data.result)
+          }else{
+            console.log("ERROR GET ARTIST BY ID : ",data.message)
+            reject(data)
+          }
+        },
+        error:(err)=>{
+          console.log("ERROR GET ARTIST BY ID AFTER NEXT : ",err)
+          reject(err)
+        }
+      })
+    })
+  }
 }

@@ -1,8 +1,8 @@
 <!--header admin-->
-<div class="container d-flex flex-wrap bg-dark adminTool" *ngIf="isAdmin">
+<div class="container d-flex flex-wrap bg-dark bg-gradient shadow-lg adminTool" *ngIf="isAdmin">
   <ul class="nav me-auto">
-    <li class="nav-item"><a href="#" class="nav-link link-light px-2 active" aria-current="page">Consulter RDV</a></li>
-    <li class="nav-item"><a routerLink="add-product" class="nav-link link-light px-2">Ajouter une toile</a></li>
+    <li class="nav-item"><a routerLink="/list-rdv" class="nav-link link-light px-2 active" aria-current="page">Consulter RDV</a></li>
+    <li class="nav-item"><a routerLink="/add-product" class="nav-link link-light px-2">Ajouter une toile</a></li>
   </ul>
   <!--si user est connecté-->
   <ul class="nav" *ngIf="isAuth">
@@ -15,12 +15,12 @@
 <!--premier header-->
 <div class="container d-flex flex-wrap" *ngIf="!isAdmin">
   <ul class="nav me-auto">
-    <li class="nav-item"><a href="#" class="nav-link link-dark px-2 active" aria-current="page">PRENDRE RENDEZ-VOUS</a></li>
+    <li class="nav-item"><a routerLink="/rdv" class="nav-link link-dark px-2 active" aria-current="page">PRENDRE RENDEZ-VOUS</a></li>
     <li class="nav-item"><a routerLink="/contact" class="nav-link link-dark px-2">NOUS CONTACTER</a></li>
   </ul>
   <ul class="nav" *ngIf="!isAuth">
     <li class="nav-item"><a href="#" class="nav-link link-dark px-2" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">Login</a></li>
-    <li class="nav-item"><a href="#" class="nav-link link-dark px-2"  role="button" routerLink="/signup">Signup</a></li>
+    <li class="nav-item"><a class="nav-link link-dark px-2"  role="button" routerLink="/signup">Signup</a></li>
     <!--sign in component-->
     <app-signin></app-signin>
   </ul>
@@ -66,7 +66,8 @@
         <span class="visually-hidden">unread messages</span>
       </span>
     </a></li>
-    <li><a href="#" class="nav-link px-2 link-dark">Favoris</a></li>
+    <li><a href="#" class="nav-link link-dark px-2" data-bs-toggle="offcanvas" href="#offcanvasFavoris" role="button" aria-controls="offcanvasFavoris">Favoris</a></li>
+    <app-favoris></app-favoris>
   </ul>
 
   <hr class="bg-gradient bg-dark" style="width: 100%; height:2px;">

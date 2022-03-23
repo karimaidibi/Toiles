@@ -1,15 +1,26 @@
+<!--alert-->
+<div class="container mx-auto" style="max-width: 700px;">
+  <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
+  <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="successMessage">{{successMessage}}</div>
+</div>
+
+<!--si panier vide-->
 <div *ngIf="!items.length" style="text-align: center;">
   <h4>
     Votre panier est vide ! <br/>
     <button type="button" class="btn btn-dark mt-3" routerLink="/galerie">Consulter la galerie</button>
   </h4>
 </div>
+
 <!--panier-->
 <div class="mb-3 mx-auto" style="max-width: 700px; border-bottom: 1px solid black;" *ngFor="let item of items">
+  <!--row item-->
   <div class="row g-0">
+    <!-- item image-->
     <div class="col-md-4">
       <img [src]="item.product.image" class="img-fluid rounded-start" alt="...">
     </div>
+    <!--item infos-->
     <div class="col-md-7">
       <div class="card-body">
         <h5 class="card-title">{{item.product.produit}}</h5>
@@ -25,16 +36,28 @@
             <button type="button" class="btn btn-dark" (click)="removeOne(item.product)"><i class="bi bi-dash-lg"></i></button>
           </div>
         </div>
-        PRIX UNITAIRE: {{item.product.prix}}<br/>
-        PRIX U TTC : {{item.product.prix*1.2}}<br/>
-        TVA : {{item.product.prix*0.2*item.quantity}}<br/>
+        PRIX UNITAIRE: {{item.product.prix | currency : 'EUR'}}<br/>
+        PRIX U TTC : {{item.product.prix*1.2 | currency : 'EUR'}}<br/>
+        TVA : {{item.product.prix*0.2*item.quantity | currency : 'EUR'}}<br/>
         <div class="priceDiv">
-          PRIX TOTAL TTC: <p class="price">{{item.product.prix*item.quantity*1.2}} <i class="bi bi-check-lg"></i></p>
+          PRIX TOTAL TTC: <p class="price">{{item.product.prix*item.quantity*1.2 | currency : 'EUR'}} <i class="bi bi-check-lg"></i></p>
         </div>
       </div>
     </div>
+    <!-- remove -->
     <div class="col-md-1">
       <button type="button" class="btn btn-close" aria-label="Close" (click)="removeMany(item.product)"></button>
     </div>
   </div>
+</div>
+
+<div *ngIf="resume" class="container resume">
+  Quantité totale des produits : {{resume.quantity}}<br>
+  Prix total HT : {{resume.costHT | currency : 'EUR'}}<br>
+  Prix total Taxe : {{resume.costTaxe | currency : 'EUR'}}<br>
+  Prix Total TTC : {{resume.costTTC | currency : 'EUR'}}
+</div>
+
+<div *ngIf="items.length" class="contanier payer mx-auto">
+    <button (click) = "placeOrder(cart)" type="button" class="btn btn-lg" style="width: 100%;color: white;">PAYER MA COMMANDE</button>
 </div>

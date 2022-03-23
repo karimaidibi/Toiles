@@ -1,0 +1,65 @@
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasFavoris" aria-labelledby="offcanvasFavoris">
+
+  <!--header-->
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">FAVORIS</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <!--body-->
+  <div class="offcanvas-body">
+
+    <!--panier-->
+    <div class="mb-3" style="border-bottom: 1px solid black;">
+      <!--row item-->
+      <div class="row">
+        <!-- item image-->
+        <div class="col">
+          <img src="https://placeimg.com/640/480/nature" class="img-fluid rounded-start" alt="...">
+        </div>
+        <!--item infos-->
+        <div class="col">
+          <div class="card-body">
+            <h5 class="card-title">title</h5>
+            FORMAT<br/>
+            TYPE<br/>
+            {{58757 | currency : 'EUR'}}
+          </div>
+        </div>
+        <!-- remove -->
+        <div class="col">
+          <button type="button" class="btn btn-close" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+
+    <!--panier-->
+    <div class="mb-3" style="border-bottom: 1px solid black;">
+      <!--row item-->
+      <div class="row">
+        <!-- item image-->
+        <div class="col">
+          <img src="https://placeimg.com/640/480/nature" class="img-fluid rounded-start" alt="...">
+        </div>
+        <!--item infos-->
+        <div class="col">
+          <div class="card-body">
+            <h5 class="card-title">title</h5>
+            FORMAT<br/>
+            TYPE<br/>
+            {{58757 | currency : 'EUR'}}
+          </div>
+        </div>
+        <!-- remove -->
+        <div class="col">
+          <button type="button" class="btn btn-close" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- commander-->
+    <div class="commander">
+        <button routerLink="/cart" type="button" class="btn btn-lg" style="width: 100%;color: white;">PASSER A LA COMMANDE</button>
+    </div>
+  </div>
+
+</div>

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { CanActivate } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
@@ -17,8 +18,10 @@ export class CartService {
   tva = environment.tva/100
   cart$ = new Subject<Cart>()
 
+  //URL de l'api stoqué comme variable d'environnement
+  api = environment.api;
 
-  constructor() {
+  constructor(private http : HttpClient) {
     this.initCart()
   }
 
@@ -108,5 +111,31 @@ export class CartService {
     }
   }
 
+  removeCart(){
+    this.cart.items = []
+    this.updateCart()
+  }
+
+  placeOrder(cart : Cart){
+    return new Promise((resolve,reject)=>{
+      this.http.post(this.api+'/commande',cart).subscribe({
+        next: (data:any)=>{
+          if(data.status===201){
+            resolve(data)
+          }else{
+            console.log('ERROR WHILE Create cart : ', data.message)
+            reject(data.message)
+          }
+        },
+        error: (err)=>{
+          console.log("error while create cart : ", err)
+          reject(err)
+        },
+        complete: ()=>{
+          console.log('complete post cart')
+        }
+      })
+    })
+  }
 
 }

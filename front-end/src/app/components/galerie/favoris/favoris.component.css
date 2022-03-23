@@ -1,0 +1,14 @@
+.card-body{
+  padding-top: 5px;
+  text-transform: uppercase;
+  line-height : 1.4;
+  /* font-size: small;
+
+  white-space: nowrap;
+  vertical-align: super; */
+}
+
+.commander{
+  margin-top: 1%;
+  background-color: black;
+}

@@ -16,23 +16,34 @@ export class CartComponent implements OnInit, OnDestroy {
   cart!: Cart
   items!: any
   isAuth!: boolean
+  resume!: {
+    quantity: number,
+    costHT: number,
+    costTaxe: number,
+    costTTC: number
+  };
+  userId: string = ''
+  errorMessage!: string
+  successMessage!: string
+  loading: boolean = false
 
   constructor(private cartService: CartService,
     private authService : AuthService,
     private router: Router) { }
 
   ngOnInit(): void {
-    this.verifSignIn()
     this.cartService.cart$.subscribe({
       next : (cart: Cart)=>{
         this.cart = cart
         this.items = cart.items
+        this.resume = cart.resume
       },
       error: (err)=>{
         console.log(err)
       }
     })
     this.cartService.emitCart()
+    this.verifSignIn()
   }
 
   //assigner is auth a true si user est connecté
@@ -40,6 +51,10 @@ export class CartComponent implements OnInit, OnDestroy {
     this.authService.isAuth$.subscribe(
       (bool: boolean)=>{
         this.isAuth = bool
+        if(this.isAuth && this.authService.userId){
+          this.userId = this.authService.userId
+          this.cart.userId = this.userId
+        }
       }
     )
   }
@@ -68,10 +83,35 @@ export class CartComponent implements OnInit, OnDestroy {
     }
   }
 
+  removeCart(){
+    if(this.isAuth){
+      this.cartService.removeCart()
+    }else{
+      this.router.navigate(['/signup'])
+    }
+  }
+
+  placeOrder(cart : Cart){
+    this.loading = true
+    if(this.isAuth && this.userId){
+      this.cartService.placeOrder(cart)
+      .then(()=>{
+        this.successMessage = "Merci d'avoir commandé chez nous. A bientot !"
+        this.loading = false
+        this.removeCart()
+      })
+      .catch((err)=>{
+        this.loading = false
+        this.errorMessage = err.message
+        console.log(err.message)
+      })
+    }
+  }
+
   ngOnDestroy(): void {
-      if(typeof localStorage !== "undefined"){
-        localStorage.setItem('cart','')
-      }
+    if(typeof localStorage !== "undefined"){
+      localStorage.setItem('cart','')
+    }
   }
 
 }

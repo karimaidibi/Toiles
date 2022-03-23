@@ -1,27 +1,36 @@
+import { Artist } from './../../../models/artist';
+import { Subscription } from 'rxjs';
+import { ArtistService } from './../../../services/artist.service';
 import { ProductService } from './../../../services/product.service';
 import { Product } from './../../../models/product';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.css']
 })
-export class AddProductComponent implements OnInit {
+export class AddProductComponent implements OnInit, OnDestroy {
 
   productForm!: FormGroup;
   errorMessage!: string;
   loading: boolean = false
   imagePreview!: string
+  artistSub!: Subscription
+  artists!: Artist[]
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
-    private productService : ProductService) { }
+    private productService : ProductService,
+    private artistService : ArtistService) { }
+
 
   ngOnInit(): void {
     this.initproductForm()
+    this.initArtistsSubscription()
+    this.artistService.getArtists()
   }
 
   initproductForm(){
@@ -115,6 +124,27 @@ export class AddProductComponent implements OnInit {
      // comment je veux lire le fichier
      reader.readAsDataURL(f)
     }
+  }
+
+  initArtistsSubscription(){
+    //get artists
+    this.loading = true
+    this.artistSub = this.artistService.artists$.subscribe({
+      next:(artists : any)=>{
+        this.loading = false
+        this.artists = artists
+      },
+      error: (err)=>{
+        this.loading = true
+        console.log(err)
+      },
+      complete :()=>{
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.artistSub.unsubscribe()
   }
 
 }

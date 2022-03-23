@@ -1,1 +1,80 @@
-<p>rdv works!</p>
+<!--titre-->
+<h3><strong>PRENDRE RDV</strong></h3>
+<hr class="bg-gradient bg-dark hrHeader" style="width: 60%; height:0.5px;">
+<div class="container-fluid">
+  <div class="container">
+    <mat-spinner class="mx-auto" *ngIf="loading" style="margin-top: 100px; margin-bottom:100px;"></mat-spinner>
+
+    <!--infos-->
+    <div style="text-align: center;">
+      Tél : + 7 83 33 41 03 <br/>
+      Mail : aidibikarim1999@hotmail.com<br/>
+      <button type="button" class="btn btn-lg btn-dark mt-1" style="width: 50%;" routerLink="/contact"> Vous n'etes pas sur ? contactez-nous </button>
+    </div>
+
+    <!--form-->
+    <form [formGroup]="rdvForm" (ngSubmit)="onSubmit()">
+      <!--alert-->
+      <div class="alert alert-danger alert-dismissible" *ngIf="errorMessage">{{errorMessage}}</div>
+      <div class="alert alert-success alert-dismissible" *ngIf="successMessage">{{successMessage}}</div>
+      <!--date-->
+      <div class="mb-4">
+        <label for="date">Choisissez une date, nous revenons vers vous durant la semaine : </label>
+        <div style="text-align: center;" class="pt-2">
+          <input  type="date" id="date" name="date" formControlName="date">
+        </div>
+      </div>
+      <!--lieu-->
+      <div class="form-floating mb-3">
+        <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="lieu" formControlName="lieu">
+          <option selected value="En distanciel">En distanciel</option>
+          <option value="Sur place">Sur place (Montpellier) </option>
+        </select>
+        <label for="floatingSelect">En distanciel ou sur place ? Nous sommes là pour vous :)</label>
+      </div>
+      <!--nom-->
+      <div class="mb-3 form-group">
+        <label for="formGroupExampleInput" class="form-label">Veuillez saisir votre nom :</label>
+        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nuage"
+          name="nom"
+          formControlName="nom" >
+      </div>
+      <!--prenom-->
+      <div class="mb-3 form-group">
+        <label for="formGroupExampleInput2" class="form-label">Veuillez saisir votre prénom :</label>
+        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="90x80..."
+          name="prenom"
+          formControlName="prenom"
+          >
+      </div>
+      <!--email-->
+      <div class="mb-3 form-group">
+        <label for="exampleInputEm" class="form-label">Veuillez saisir votre adresse email de contact :</label>
+        <input type="email" class="form-control" id="exampleInputEm" aria-describedby="emailHelp"
+        name="email"
+        formControlName="email">
+      </div>
+      <!--sujet-->
+      <div class="mb-3 form-group">
+        <label for="formGroupExampleInputt" class="form-label">Veuillez saisir votre numéro de téléphone protable : </label>
+        <input type="text" class="form-control" id="formGroupExampleInputt" placeholder="90x80..."
+          name="telephone"
+          formControlName="telephone"
+          >
+      </div>
+      <!--description-->
+      <div class="form-floating">
+        <textarea class="form-control" placeholder="j'aime beaucoup ce site !" id="floatingTextarea2" style="height: 100px"
+        name="message"
+        formControlName="message"></textarea>
+        <label for="floatingTextarea2">votre message</label>
+      </div>
+      <div style="text-align: center;">
+        <button class="btn btn-dark mt-1" style="width: 100%;" [disabled]="rdvForm.invalid">Envoyer votre message</button>
+      </div>
+    </form>
+
+  </div>
+
+</div>
+

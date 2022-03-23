@@ -65,7 +65,7 @@
     <select class="form-select" aria-label="Default select example"
     name="artistId"
     formControlName="artistId">
-      <option value="1" selected>One</option>
+      <option *ngFor="let artist of artists" [value]="artist._id" selected>{{artist.prenom}} {{artist.nom}}</option>
     </select>
 
     <!--description-->

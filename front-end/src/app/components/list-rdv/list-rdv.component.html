@@ -1,0 +1,14 @@
+<mat-spinner class="mx-auto" *ngIf="loading" style="margin-top: 100px; margin-bottom:100px;"></mat-spinner>
+<!--les rdv-->
+<div class="row row-cols-2 row-cols-lg-12 g-2">
+  <!--column-->
+  <div class="col card" style="max-width: 18rem;" *ngFor="let rdv of rdvs">
+    <div class="card-header text-white bg-dark rounded">{{rdv.date}} | {{rdv.lieu}}</div>
+    <div class="card-body">
+      <h6 class="card-title">{{rdv.nom}} {{rdv.prenom}}</h6>
+      Mail : {{rdv.email}}<br>
+      Tél : {{rdv.telephone}}<br>
+      <p *ngIf="rdv.message" class="card-text">{{rdv.message}}</p>
+    </div>
+  </div>
+</div>

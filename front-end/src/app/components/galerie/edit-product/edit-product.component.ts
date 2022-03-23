@@ -1,9 +1,12 @@
+import { ArtistService } from './../../../services/artist.service';
+import { Artist } from './../../../models/artist';
+import { Subscription } from 'rxjs';
 import { AuthService } from './../../../services/auth.service';
 import { Product } from './../../../models/product';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ProductService } from './../../../services/product.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -11,7 +14,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './edit-product.component.html',
   styleUrls: ['./edit-product.component.css']
 })
-export class EditProductComponent implements OnInit {
+export class EditProductComponent implements OnInit, OnDestroy {
 
   productForm!: FormGroup;
   errorMessage!: string;
@@ -21,15 +24,22 @@ export class EditProductComponent implements OnInit {
   userId!: any
   private adminId = environment.ADMIN_ID
 
+  //Infos artistes
+  artistSub!: Subscription
+  artists!: Artist[]
+
   constructor(private formBuilder: FormBuilder,
     private router: Router,
     private productService : ProductService,
     private route: ActivatedRoute,
-    private auth: AuthService) { }
+    private auth: AuthService,
+    private artistService : ArtistService) { }
 
   ngOnInit(): void {
     this.userId = this.auth.userId
     this.getProductInfos()
+    this.initArtistsSubscription()
+    this.artistService.getArtists()
   }
 
   getProductInfos() : void{
@@ -162,5 +172,27 @@ export class EditProductComponent implements OnInit {
      reader.readAsDataURL(f)
     }
   }
+
+  initArtistsSubscription(){
+    //get artists
+    this.loading = true
+    this.artistSub = this.artistService.artists$.subscribe({
+      next:(artists : any)=>{
+        this.loading = false
+        this.artists = artists
+      },
+      error: (err)=>{
+        this.loading = true
+        console.log(err)
+      },
+      complete :()=>{
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.artistSub.unsubscribe()
+  }
+
 
 }

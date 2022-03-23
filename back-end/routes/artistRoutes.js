@@ -7,7 +7,7 @@ const authAdmin = require('../middlewares/authAdmin');
 
 router.get('/',ArtistController.list);
 
-//router.get('/:id', ArtistController.show)
+router.get('/:id', ArtistController.show)
 
 //post
 //router.post('/',authAdmin,multerConfig,ArtistController.create)

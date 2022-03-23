@@ -7,4 +7,5 @@ export class Cart {
     costTaxe: number,
     costTTC: number
   }
+  userId: string = ''
 }
