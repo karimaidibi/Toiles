@@ -25,7 +25,7 @@ export class CartService {
     this.initCart()
   }
 
-  /*Une fonction qui permet de stocker le userId et son token sur le navigateur web du client*/
+  /*Une fonction qui permet de stocker le cartsur le navigateur web du client*/
   initCart(){
     if(typeof localStorage !== "undefined"){
       let data = localStorage.getItem('cart')

@@ -1,3 +1,6 @@
+import { Product } from './product';
 export class Favoris {
-  favoris!: Array<string>
+  userId!: string
+  favoris: string[] = []
+  products: Product[] = []
 }

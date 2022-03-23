@@ -111,6 +111,7 @@ export class AuthService {
     if(typeof localStorage !== "undefined"){
       localStorage.setItem('auth',"")
       localStorage.setItem('cart','')
+      localStorage.setItem('favoris','')
     }
   }
 

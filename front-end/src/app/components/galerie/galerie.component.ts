@@ -1,3 +1,4 @@
+import { FavorisService } from './../../services/favoris.service';
 import { CartService } from './../../services/cart.service';
 import { AuthService } from './../../services/auth.service';
 import { Router } from '@angular/router';
@@ -25,7 +26,8 @@ export class GalerieComponent implements OnInit, OnDestroy {
   constructor(private productService: ProductService,
     private router : Router,
     private authService: AuthService,
-    private cartService: CartService
+    private cartService: CartService,
+    private favorisService: FavorisService
               ) { }
 
   ngOnInit(): void {
@@ -66,6 +68,14 @@ export class GalerieComponent implements OnInit, OnDestroy {
   addToCart(product: Product){
     if(this.isAuth){
       this.cartService.addToCart(product)
+    }else{
+      this.router.navigate(['/signup'])
+    }
+  }
+
+  addToFavoris(productId : string, product : Product){
+    if(this.isAuth){
+      this.favorisService.addToFavoris(productId, this.userId, product)
     }else{
       this.router.navigate(['/signup'])
     }

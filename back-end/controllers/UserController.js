@@ -107,5 +107,94 @@ module.exports = {
                 result: users
             })
         })
-    }
+    },
+
+    //update l'objet favoris de 'lutilisateur
+    updateOneUserFavoris: (req,res)=>{
+        const id = req.params.id; // recupere id dans les paramteres de la requete
+        const products = req.body.products // recuperer lobjet favoris
+
+        //update l'objet favoris de cet utilisateur
+        UserModel.updateOne({_id: id},{$set:{favoris : products}}, (err,data)=>{
+        if(err){
+            return res.status(500).json({
+            status: 500,
+            message: 'Erreur when updating favoris'
+            })
+        }
+        // si tout ce passe bien
+        return res.status(200).json({
+            status: 200,
+            message: 'Objet updated success!'
+        })
+        })
+
+    },
+
+    //get un user
+    show: (req, res)=>{
+        const id = req.params.id; // recupere id dans les paramteres de la requete
+        UserModel.findOne({_id: id}, (err, user)=>{
+            if(err){
+                return res.status(500).json({
+                    status: 500,
+                    message: 'Error when getting one user.'
+                })
+            }
+            if(!user){
+                return res.status(404).json({
+                    status: 404,
+                    message: 'user non trouver!'
+                })
+            }
+            return res.status(200).json({
+                status: 200,
+                result: user
+            })
+        })
+    },
+
+    //get user favoris
+    showFavoris: (req, res)=>{
+        const id = req.params.id; // recupere id dans les paramteres de la requete
+        UserModel.findOne({_id: id},{favoris: true}, (err, user)=>{
+            if(err){
+                return res.status(500).json({
+                    status: 500,
+                    message: 'Error when getting one user favoris.'
+                })
+            }
+            if(!user){
+                return res.status(404).json({
+                    status: 404,
+                    message: 'user non trouver!'
+                })
+            }
+            return res.status(200).json({
+                status: 200,
+                result: user
+            })
+        })
+    },
+
+    updateOneItemInAllFavoris: (req,res)=>{
+        const product = req.body.product // recuperer lobjet favoris
+
+        //match all items with this id and update items with the new one 
+        UserModel.updateOne({_id: id},{$set:{favoris : products}}, (err,data)=>{
+        if(err){
+            return res.status(500).json({
+            status: 500,
+            message: 'Erreur when updating favoris'
+            })
+        }
+        // si tout ce passe bien
+        return res.status(200).json({
+            status: 200,
+            message: 'Objet updated success!'
+        })
+        })
+
+    },
+
 }
