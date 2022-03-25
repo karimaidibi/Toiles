@@ -10,12 +10,21 @@ router.post('/login', UserController.login);
 
 router.get('/',authAdmin, UserController.list);
 
-router.get('/:id/favoris',auth, UserController.showFavoris)
-
 router.get('/:id',auth,UserController.show)
 
+// Afficher les favoris de l'utilisateur en question
+router.get('/:id/favoris',auth, UserController.showFavoris)
+
+// Update les favoris de l'utilsateur en question
 router.put('/:id/favoris',auth,UserController.updateOneUserFavoris)
 
-router.put('/favoris',auth,UserController.updateOneItemInAllFavoris)
+// update le produit dans chaque liste de favoris dans laquelle ce produit existe  
+router.put('/favoris',authAdmin,UserController.updateOneItemInAllFavoris)
+
+// delete le produit dans chaque liste de favoris dans laquelle ce produit existe 
+router.put('/favoris/delete',authAdmin,UserController.deleteOneItemInAllFavoris)
+
+// Afficher les commandes de l'utilsateur en question
+router.get('/:id/commandes',auth,UserController.showCommandes)
 
 module.exports = router

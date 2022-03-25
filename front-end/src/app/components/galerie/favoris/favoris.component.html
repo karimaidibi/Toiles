@@ -2,7 +2,7 @@
 
   <!--header-->
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasExampleLabel">FAVORIS</h5>
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel" style="border-bottom: 0.5px solid black;">VOS FAVORIS</h5>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <!--body-->
@@ -19,7 +19,7 @@
         <!--item infos-->
         <div class="col">
           <div class="card-body">
-            <h5 class="card-title">title</h5>
+            <h5 class="card-title">{{product.produit}}</h5>
             {{product.format}}<br/>
             {{product.type_produit}}<br/>
             {{product.prix | currency : 'EUR'}}
@@ -33,8 +33,16 @@
     </div>
 
     <!-- commander-->
-    <div class="commander">
-        <button routerLink="/cart" type="button" class="btn btn-lg" style="width: 100%;color: white;">PASSER A LA COMMANDE</button>
+    <div class="commander" *ngIf="products.length">
+        <button (click)="passerLaCommande()" type="button" class="btn btn-lg" style="width: 100%;color: white;">PASSER A LA COMMANDE</button>
+    </div>
+
+    <div *ngIf="!products.length">
+      <pre>
+Vous
+        n'avez encore aucun
+                                favoris :)
+      </pre>
     </div>
   </div>
 

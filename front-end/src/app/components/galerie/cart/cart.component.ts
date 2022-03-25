@@ -5,6 +5,7 @@ import { CartService } from './../../../services/cart.service';
 import { Item } from './../../../models/item';
 import { Cart } from './../../../models/cart';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-cart',
@@ -26,6 +27,10 @@ export class CartComponent implements OnInit, OnDestroy {
   errorMessage!: string
   successMessage!: string
   loading: boolean = false
+
+  private adminId = environment.ADMIN_ID
+  isAdmin: boolean = false
+  adminMessage!: string
 
   constructor(private cartService: CartService,
     private authService : AuthService,
@@ -54,6 +59,9 @@ export class CartComponent implements OnInit, OnDestroy {
         if(this.isAuth && this.authService.userId){
           this.userId = this.authService.userId
           this.cart.userId = this.userId
+          if(this.adminId === this.userId){
+            this.isAdmin = true
+          }
         }
       }
     )
@@ -93,7 +101,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
   placeOrder(cart : Cart){
     this.loading = true
-    if(this.isAuth && this.userId){
+    if(this.isAuth && this.userId && !this.isAdmin){
       this.cartService.placeOrder(cart)
       .then(()=>{
         this.successMessage = "Merci d'avoir commandé chez nous. A bientot !"
@@ -105,6 +113,11 @@ export class CartComponent implements OnInit, OnDestroy {
         this.errorMessage = err.message
         console.log(err.message)
       })
+    }
+    if(this.isAdmin){
+      this.adminMessage = "Créer un compte normal afin de pouvoir commander, merci !"
+      //scroll sur le haut
+      window.scroll(0,0)
     }
   }
 

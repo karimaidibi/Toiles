@@ -3,6 +3,8 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 // un plugin de mongoose
 const uniqueValidator = require('mongoose-unique-validator')
+const toileModel = require('./ToileModel');
+const product = toileModel.productSchema
 
 //create a schema
 const userSchema = new Schema({
@@ -13,7 +15,7 @@ const userSchema = new Schema({
     rue: {type : String, required : false},
     ville: {type : String, required : false},
     pays: {type : String, required : false},
-    favoris : {type: Array, required : false},
+    favoris : {type: [product], required : false},
     panier: {type: Array, required : false},
     'email' : {type: String, required: false, unique: true},
     'password' : {type: String, required: true},

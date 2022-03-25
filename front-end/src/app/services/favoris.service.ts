@@ -46,7 +46,6 @@ export class FavorisService {
       this.favorisModel.products.push(product)
       //userid
       this.favorisModel.userId = userId
-      console.log(this.favorisModel)
       // update favoris
       this.updateFavoris()
     }
@@ -58,6 +57,13 @@ export class FavorisService {
       this.emitFavoris()
       // save en db
       this.saveFavoris()
+    }
+  }
+
+  addToStorage(){
+    if(typeof localStorage !== "undefined"){
+      localStorage.setItem("favoris",JSON.stringify(this.favorisModel))
+      this.emitFavoris()
     }
   }
 
@@ -83,10 +89,77 @@ export class FavorisService {
         },
         error:(err)=>{
           console.log(err.message)
-          reject(err)
+          reject(err.message)
         },
         complete:()=>{
           console.log("complete save favoris")
+        }
+      })
+    })
+  }
+
+  getFavoris(userId: any){
+    this.http.get(this.api+'/users/'+userId+'/favoris').subscribe({
+      next: (data: any)=>{
+        if(data.status===200){
+         // remplir le favorisModel and add to storage
+         this.favorisModel.userId = userId
+         this.favorisModel.products = data.result.favoris
+         data.result.favoris.forEach((object : any)=>{
+           this.favorisModel.favoris.push(object._id)
+         })
+         this.addToStorage()
+        }else{
+          console.log("pas de favoris", data.message)
+        }
+      },
+      error: (err)=>{
+        console.log("GET FAVORIS : ",err)
+      }
+    })
+  }
+
+  updateOneItemInAllFavoris( product : Product){
+    const dict = {'product': product}
+    return new Promise((resolve,reject)=>{
+      this.http.put(this.api+'/users/favoris',dict).subscribe({
+        next: (data: any)=>{
+          if(data.status===200){
+            resolve(data)
+          }else{
+            console.log(data.message)
+            reject(data.message)
+          }
+        },
+        error: (err)=>{
+          console.log(err)
+          reject(err)
+        },
+        complete : ()=>{
+          console.log("complete update favoris of all concerned users")
+        }
+      })
+    })
+  }
+
+  deleteOneItemInAllFavoris( productId : string){
+    const dict = {'productId' : productId}
+    return new Promise((resolve,reject)=>{
+      this.http.put(this.api+'/users/favoris/delete',dict).subscribe({
+        next: (data: any)=>{
+          if(data.status===200){
+            resolve(data)
+          }else{
+            console.log(data.message)
+            reject(data.message)
+          }
+        },
+        error: (err)=>{
+          console.log(err)
+          reject(err)
+        },
+        complete : ()=>{
+          console.log("complete delete favoris of all concerned users")
         }
       })
     })

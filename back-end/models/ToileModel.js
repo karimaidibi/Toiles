@@ -16,11 +16,9 @@ const product = new Schema({
         ref: 'Artist'
     },
     image: {type : String, required : false},
-
-
-
-
 });
 
+exports.productSchema = product
+
 // exporter le model de données
-module.exports = mongoose.model('Product', product)
+exports.productModel = mongoose.model('Product', product)

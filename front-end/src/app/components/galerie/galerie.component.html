@@ -1,6 +1,12 @@
 <mat-spinner class="mx-auto" *ngIf="loading" style="margin-top: 100px; margin-bottom:100px;"></mat-spinner>
 <!--les produits-->
 <div class="mt-4 ProduitsDiv">
+  <!--alert-->
+  <div *ngIf="adminMessage" class="container mx-auto alert alert-dark alert-dismissible fade show" role="alert" style="max-width: 700px;">
+    {{adminMessage}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
   <!--row-->
   <div class="p-3 row row-cols-2 row-cols-lg-3 g-2 g-lg-5">
       <!--column-->

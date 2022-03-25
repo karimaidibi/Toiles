@@ -19,9 +19,11 @@ export class GalerieComponent implements OnInit, OnDestroy {
   products!: Product[]
   userId!: any
   loading: boolean = true
+
   private adminId = environment.ADMIN_ID
-  isAdmin!: boolean
+  isAdmin: boolean = false
   isAuth!: boolean
+  adminMessage!: string
 
   constructor(private productService: ProductService,
     private router : Router,
@@ -34,11 +36,6 @@ export class GalerieComponent implements OnInit, OnDestroy {
     // verify signin
     this.verifSignIn()
 
-    // get user id
-    this.userId = this.authService.userId
-    if(this.userId === this.adminId){
-      this.isAdmin = true
-    }
     //get products
     this.productSub = this.productService.products$.subscribe({
       next:(products : any)=>{
@@ -61,6 +58,13 @@ export class GalerieComponent implements OnInit, OnDestroy {
     this.authService.isAuth$.subscribe(
       (bool: boolean)=>{
         this.isAuth = bool
+        if(bool){
+          // get user id
+          this.userId = this.authService.userId
+          if(this.userId === this.adminId){
+            this.isAdmin = true
+          }
+        }
       }
     )
   }
@@ -68,16 +72,20 @@ export class GalerieComponent implements OnInit, OnDestroy {
   addToCart(product: Product){
     if(this.isAuth){
       this.cartService.addToCart(product)
-    }else{
+    }else {
       this.router.navigate(['/signup'])
     }
   }
 
   addToFavoris(productId : string, product : Product){
-    if(this.isAuth){
+    if(this.isAuth  && !this.isAdmin){
       this.favorisService.addToFavoris(productId, this.userId, product)
-    }else{
+    }else if(!this.isAdmin){
       this.router.navigate(['/signup'])
+    }else{
+      this.adminMessage = "Créer un compte normal afin de pouvoir accéder à cette fonctionnalité :-), merci !"
+      //scroll sur le haut
+      window.scroll(0,0)
     }
   }
 

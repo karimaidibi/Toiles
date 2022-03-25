@@ -1,4 +1,5 @@
-const ToileModel = require('../models/ToileModel');
+const toileModel = require('../models/ToileModel');
+const ToileModel = toileModel.productModel
 const fs = require('fs');
 const { find } = require('../models/ToileModel');
 //module externe : require le nom du module externe qu'on vient 

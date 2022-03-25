@@ -1,3 +1,4 @@
+import { FavorisService } from './favoris.service';
 import { Data } from './../models/data';
 import { HttpClient } from '@angular/common/http';
 import { Product } from './../models/product';
@@ -17,7 +18,9 @@ export class ProductService {
   // observable
   products$ = new Subject<Product[]>()
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private favorisService: FavorisService) { }
 
   emitProducts(){
     this.products$.next(this.products)
@@ -100,6 +103,21 @@ export class ProductService {
           if(data.status===200){
             this.getProducts()
             resolve(data)
+            //update favoris
+            this.getProductById(id)
+            .then((product : any)=>{
+              //update product
+              this.favorisService.updateOneItemInAllFavoris(product)
+              .then(()=>{
+                console.log("favoris updated for all concerned users")
+              })
+              .catch((err)=>{
+                console.log(err.message)
+              })
+            })
+            .catch((err)=>{
+              console.log(err.message)
+            })
           }else{
             console.log("ERROR createNewProduct : ",data.message)
             reject(data.message)
@@ -122,6 +140,14 @@ export class ProductService {
         next: (data: any)=>{
           this.getProducts();
           resolve(data) // ou resolve(true)
+          //update favoris
+          this.favorisService.deleteOneItemInAllFavoris(id)
+          .then(()=>{
+            console.log("favoris updated for all concerned users")
+          })
+          .catch((err)=>{
+            console.log(err.message)
+          })
         },
         error: (err)=>{
           console.log("ERROR DELETE PRODUCT : ",err)
