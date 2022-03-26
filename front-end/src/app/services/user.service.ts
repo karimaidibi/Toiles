@@ -1,3 +1,4 @@
+import { User } from './../models/user';
 import { Commande } from './../models/commande';
 import { Subject } from 'rxjs';
 import { Cart } from './../models/cart';
@@ -16,6 +17,10 @@ export class UserService {
   commandes!: Commande[];
   // observable
   commandes$ = new Subject<Commande[]>()
+
+  //user
+  user!: User
+  user$ = new Subject<User>()
 
   constructor(
     private http: HttpClient) { }
@@ -61,22 +66,24 @@ export class UserService {
     })
   }
 
+  emitUser(){
+    this.user$.next(this.user)
+  }
+
   getUserById(id: string){
-    return new Promise((resolve,reject)=>{
       this.http.get(this.api+'/users/'+id).subscribe({
         next:(data: any)=>{
           if(data.status===200){
-            resolve(data.result)
+            this.user = data.result
+            this.emitUser()
           }else{
             console.log(data.message)
-            reject(data.message)
           }
         },
         error:(err)=>{
-          reject(err)
+          console.log(err.message)
         }
       })
-    })
   }
 
 

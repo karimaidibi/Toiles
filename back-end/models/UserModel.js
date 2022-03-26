@@ -16,10 +16,8 @@ const userSchema = new Schema({
     ville: {type : String, required : false},
     pays: {type : String, required : false},
     favoris : {type: [product], required : false},
-    panier: {type: Array, required : false},
     'email' : {type: String, required: false, unique: true},
     'password' : {type: String, required: true},
-    'avatar' : {type: String, required: false},
     'createdAt' : {type : Date, default : Date.now() }
 });
 

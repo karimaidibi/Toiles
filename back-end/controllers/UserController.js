@@ -72,8 +72,9 @@ module.exports = {
                         userId: user._id,
                         // generer un token avec le package json web token
                         token: jwt.sign(
-                            {userId: user._id},
-                            process.env.TOKEN_SECRET_ADMIN, // grace a cette cle ca va encoder le token et on a besoin de ca pour decoder le token 
+                            {userId: user._id,
+                            userStatus : 1 },
+                            process.env.TOKEN_SECRET, // grace a cette cle ca va encoder le token et on a besoin de ca pour decoder le token 
                             {expiresIn: '24h'} // dure pour une journe
                         )
     

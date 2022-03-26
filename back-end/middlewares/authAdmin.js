@@ -12,18 +12,34 @@ module.exports = (req, res, next)=>{
         // la methode verify permet de verifier un token, si cest delivré par le serveur et si cest valide
         // vreify prend en parametre le token et la cle secret pour encoder le token
         // verify return le identifiant de l utilisateur si tout est ok 
-        const decodeToken = jwt.verify(token, process.env.TOKEN_SECRET_ADMIN);
+        const decodeToken = jwt.verify(token, process.env.TOKEN_SECRET);
+
+        const userStatus = decodeToken.userStatus
+        console.log('userStatus : ',userStatus)
 
         // verifier si dans la requete on a l identifiant de l utilisateur et si cette identifiant est conformer a celui dans le token
-        if(req.body.userId && req.body.userId !== decodeToken.userId){
+        if(req.body.userId){
+            if(req.body.userId !== decodeToken.userId){
+                return res.status(401).json({
+                    status: 401,
+                    message: 'INVALID USER ID !'
+                })
+            }else if (userStatus !== 1){
+                return res.status(401).json({
+                    status: 401,
+                    message: 'PERMISSION DENIED NOT ADMIN !'
+                }) 
+            }else{
+                next()
+            }
+        }else if( userStatus !== 1){
             return res.status(401).json({
                 status: 401,
-                message: 'Invalid USER ID !'
-            })
+                message: 'PERMISSION DENIED NOT ADMIN !'
+            })   
         }else{
             next()
         }
-
     } catch (error) {
         return res.status(500).json({
             status: 500,

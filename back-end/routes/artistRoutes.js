@@ -5,8 +5,10 @@ const multerConfig = require('../middlewares/multer.config')
 const auth = require('../middlewares/auth');
 const authAdmin = require('../middlewares/authAdmin');
 
+// récuperer la listes de tous les artistes dans la bd
 router.get('/',ArtistController.list);
 
+// récuperer un artiste en particulier
 router.get('/:id', ArtistController.show)
 
 //post

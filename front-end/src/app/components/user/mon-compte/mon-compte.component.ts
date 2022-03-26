@@ -1,16 +1,19 @@
+import { Subscription } from 'rxjs';
+import { User } from './../../../models/user';
 import { UserService } from './../../../services/user.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { AuthService } from './../../../services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-mon-compte',
   templateUrl: './mon-compte.component.html',
   styleUrls: ['./mon-compte.component.css']
 })
-export class MonCompteComponent implements OnInit {
+export class MonCompteComponent implements OnInit,OnDestroy {
 
-  user!: any
+  userSub!: Subscription
+  user!: User
   isAuth!: boolean
   userId!: any
 
@@ -23,7 +26,20 @@ export class MonCompteComponent implements OnInit {
   ngOnInit(): void {
     // verify sign in then do the rest
     this.verifSignIn()
-    this.initUserSubscription()
+    // récuperer l'id depuis la route
+    this.userSub = this.userService.user$.subscribe({
+      next: (user: any)=>{
+        this.user = user
+      },
+      error: (err)=>{
+        this.router.navigate(['/not-found'])
+        console.log(err.message)
+      },
+      complete : ()=>{
+        console.log("complete")
+      }
+    })
+    this.userService.getUserById(this.userId)
   }
 
   //assigner is auth a true si user est connecté
@@ -38,35 +54,12 @@ export class MonCompteComponent implements OnInit {
     )
   }
 
-  initUserSubscription(): void{
-    // récuperer l'id depuis la route
-    if(this.isAuth){
-      this.route.params.subscribe({
-        next: (params : Params)=>{
-          const id = params['id'];
-          this.userService.getUserById(this.userId)
-          .then((user : any)=>{
-            this.user = user
-          })
-          .catch((err)=>{
-            this.router.navigate(['/not-found'])
-            console.log(err.message)
-          })
-        },
-        error: (err)=>{
-          this.router.navigate(['/not-found'])
-          console.log(err.message)
-        },
-        complete : ()=>{
-          console.log("complete")
-        }
-      })
-    }
-
-  }
-
   logout(){
     this.authService.logout()
     window.location.reload();
+  }
+
+  ngOnDestroy(): void {
+      this.userSub.unsubscribe()
   }
 }
