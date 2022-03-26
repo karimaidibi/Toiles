@@ -1,0 +1,14 @@
+
+.hrHeader{
+  margin-left: 20%;
+  width: 60%;
+  height: 0.5px
+}
+
+div{
+  text-transform: uppercase;
+}
+
+a:hover{
+  border-bottom: 1px solid black;
+}

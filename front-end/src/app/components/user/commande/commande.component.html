@@ -1,0 +1,14 @@
+<mat-spinner class="mx-auto" *ngIf="loading" style="margin-top: 100px; margin-bottom:100px;"></mat-spinner>
+<!--les commandes-->
+<div class="mx-auto row row-cols-2 row-cols-lg-5 g-2">
+  <!--column-->
+  <div class="col" *ngFor="let commande of commandes" [routerLink]="['/commandes',commande._id]">
+    <div class="card" style="max-width: 18rem;" >
+      <div class="card-header text-white bg-dark rounded">{{commande.date | date}}</div>
+      <div class="card-body">
+        <h6 class="card-title">{{commande.resume.costTTC | currency:'EUR'}}</h6>
+        totale article: {{commande.resume.quantity}}<br>
+      </div>
+    </div>
+  </div>
+</div>

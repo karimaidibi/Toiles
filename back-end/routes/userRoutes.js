@@ -24,7 +24,7 @@ router.put('/favoris',authAdmin,UserController.updateOneItemInAllFavoris)
 // delete le produit dans chaque liste de favoris dans laquelle ce produit existe 
 router.put('/favoris/delete',authAdmin,UserController.deleteOneItemInAllFavoris)
 
-// Afficher les commandes de l'utilsateur en question
+// Afficher les commandes de l'utilisateur en question
 router.get('/:id/commandes',auth,UserController.showCommandes)
 
 module.exports = router

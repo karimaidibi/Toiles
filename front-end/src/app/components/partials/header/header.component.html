@@ -6,7 +6,8 @@
   </ul>
   <!--si user est connecté-->
   <ul class="nav" *ngIf="isAuth">
-    <li class="nav-item"><a href="#" class="nav-link link-light px-2" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">Mon compte</a></li>
+    <li class="nav-item"><a href="#" class="nav-link link-light px-2" data-bs-toggle="offcanvas" href="#offcanvasMonCompte" role="button" aria-controls="offcanvasMonCompte">Mon compte</a></li>
+    <app-mon-compte></app-mon-compte>
     <li class="nav-item" (click)="logout()"><a href="#" class="nav-link link-light px-2" role="button">Log out</a></li>
     <!-- mon compte component-->
   </ul>
@@ -26,7 +27,8 @@
   </ul>
   <!--si user est connecté-->
   <ul class="nav" *ngIf="isAuth">
-    <li class="nav-item"><a href="#" class="nav-link link-dark px-2" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">Mon compte</a></li>
+    <li class="nav-item"><a href="#" class="nav-link link-dark px-2" data-bs-toggle="offcanvas" href="#offcanvasMonCompte" role="button" aria-controls="offcanvasMonCompte">Mon compte</a></li>
+    <app-mon-compte></app-mon-compte>
     <li class="nav-item" (click)="logout()"><a href="#" class="nav-link link-dark px-2" role="button">Log out</a></li>
     <!-- mon compte component-->
   </ul>

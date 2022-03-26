@@ -1,0 +1,37 @@
+<div *ngIf="commande">
+  <!--panier-->
+  <div class="mb-3 mx-auto" style="max-width: 700px; border-bottom: 1px solid black;" *ngFor="let item of commande.items">
+    <!--row item-->
+    <div class="row g-0">
+      <!-- item image-->
+      <div class="col-md-4">
+        <img [src]="item.product.image" class="img-fluid rounded-start" alt="...">
+      </div>
+      <!--item infos-->
+      <div class="col-md-7">
+        <div class="card-body">
+          <h5 class="card-title">{{item.product.produit}}</h5>
+          FORMAT : {{item.product.format}}<br/>
+          TYPE : {{item.product.type_produit}}<br/>
+          ANNEE : {{item.product.annee}}<br/>
+          ARTISTE : {{item.product.artistId}}<br/>
+          QUANTITE : {{item.quantity}}<br/>
+          PRIX UNITAIRE: {{item.product.prix | currency : 'EUR'}}<br/>
+          PRIX U TTC : {{item.product.prix*1.2 | currency : 'EUR'}}<br/>
+          TVA : {{item.product.prix*0.2*item.quantity | currency : 'EUR'}}<br/>
+          <div class="priceDiv">
+            PRIX TOTAL TTC: <p class="price">{{item.product.prix*item.quantity*1.2 | currency : 'EUR'}} <i class="bi bi-check-lg"></i></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container resume">
+    Quantité totale des produits : {{commande.resume.quantity}}<br>
+    Prix total HT : {{commande.resume.costHT | currency : 'EUR'}}<br>
+    Prix total Taxe : {{commande.resume.costTaxe | currency : 'EUR'}}<br>
+    Prix Total TTC : {{commande.resume.costTTC | currency : 'EUR'}}
+  </div>
+</div>
+

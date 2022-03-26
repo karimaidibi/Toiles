@@ -1,0 +1,17 @@
+<div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasMonCompte" aria-labelledby="offcanvasMonCompte">
+
+  <div class="offcanvas-header" >
+    <h5 class="offcanvas-title mx-auto" id="offcanvasExampleLabel">MON COMPTE</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body" style="text-align: center;">
+    <div *ngIf="user.prenom && user.nom">BONJOUR {{user.prenom}} {{user.nom}}</div>
+    <div *ngIf="!user.prenom && user.nom">BONJOUR {{user.nom}}</div>
+    <div *ngIf="user.prenom && !user.nom">BONJOUR {{user.prenom}}</div>
+    <div *ngIf="!user.prenom && !user.nom">BONJOUR {{user.email}}</div>
+    <hr class="bg-gradient bg-dark hrHeader">
+    <a routerLink="/commandes" class="nav-link link-dark px-2" role="button">MES COMMANDES</a>
+    <a (click)="logout()" class="nav-link link-dark px-2" role="button">DECONNEXION</a>
+
+  </div>
+</div>

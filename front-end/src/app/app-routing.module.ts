@@ -1,3 +1,5 @@
+import { SingleCommandeComponent } from './components/user/commande/single-commande/single-commande.component';
+import { CommandeComponent } from './components/user/commande/commande.component';
 import { ListRdvComponent } from './components/list-rdv/list-rdv.component';
 import { RdvComponent } from './components/contact/rdv/rdv.component';
 import { ContactComponent } from './components/contact/contact.component';
@@ -28,6 +30,8 @@ const routes: Routes = [
   {path:'rdv', component: RdvComponent},
   {path:'contact', component: ContactComponent},
   {path:'list-rdv', component: ListRdvComponent, canActivate: [AuthGuard]},
+  {path:'commandes', component: CommandeComponent, canActivate: [AuthGuard]},
+  {path:'commandes/:id', component: SingleCommandeComponent, canActivate: [AuthGuard]},
   {path:'', component: HomeComponent},
   // si tout ce qui es tavant ne marche pas faire ceci
   {path:'**', pathMatch:'full', redirectTo: 'not-found'},

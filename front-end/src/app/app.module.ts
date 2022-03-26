@@ -27,6 +27,9 @@ import { ContactComponent } from './components/contact/contact.component';
 import { RdvComponent } from './components/contact/rdv/rdv.component';
 import { ListRdvComponent } from './components/list-rdv/list-rdv.component';
 import { FavorisComponent } from './components/galerie/favoris/favoris.component';
+import { MonCompteComponent } from './components/user/mon-compte/mon-compte.component';
+import { CommandeComponent } from './components/user/commande/commande.component';
+import { SingleCommandeComponent } from './components/user/commande/single-commande/single-commande.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +53,9 @@ import { FavorisComponent } from './components/galerie/favoris/favoris.component
     RdvComponent,
     ListRdvComponent,
     FavorisComponent,
+    MonCompteComponent,
+    CommandeComponent,
+    SingleCommandeComponent,
   ],
   imports: [
     BrowserModule,
