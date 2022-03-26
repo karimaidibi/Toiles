@@ -25,6 +25,9 @@ export class GalerieComponent implements OnInit, OnDestroy {
   isAuth!: boolean
   adminMessage!: string
 
+  filterProduct!: string
+  filterProductSub!: Subscription
+
   constructor(private productService: ProductService,
     private router : Router,
     private authService: AuthService,
@@ -51,6 +54,20 @@ export class GalerieComponent implements OnInit, OnDestroy {
     });
 
     this.productService.getProducts()
+
+    //filter
+    this.filterProductSub = this.productService.filterProduct$.subscribe({
+      next:(data: any)=>{
+        this.filterProduct = data
+      },
+      error:(err)=>{
+        console.log(err)
+      },
+      complete:()=>{
+        console.log('complete')
+      }
+    })
+
   }
 
   //assigner is auth a true si user est connecté

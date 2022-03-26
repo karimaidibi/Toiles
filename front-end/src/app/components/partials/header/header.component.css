@@ -2,6 +2,8 @@
 
 em{
   font-size: x-small;
+  padding-top: 6%;
+  padding-left: 1%;
 }
 
 .brand{
@@ -15,8 +17,13 @@ em{
 
 a:hover {
   border-bottom: 1px solid black;
+  cursor: pointer;
 }
 
 .adminTool a:hover{
   border-bottom: 1px solid white;
+}
+
+.adminTool{
+  background-color: black;
 }

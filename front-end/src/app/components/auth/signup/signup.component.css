@@ -32,3 +32,9 @@ a{
 a:hover {
   border-bottom: 1px solid black;
 }
+
+.boutonDark{
+  background-color: black;
+  color: white;
+  width: 100%;
+}

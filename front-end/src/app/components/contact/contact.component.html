@@ -9,7 +9,7 @@
     <div style="text-align: center;">
       Tél : + 7 83 33 41 03 <br/>
       Mail : aidibikarim1999@hotmail.com<br/>
-      <button type="button" class="btn btn-lg btn-dark mt-1" style="width: 50%;" routerLink="/rdv"> Prendre un endez-vous</button>
+      <button type="button" class="btn btn-lg  mt-1" style="width: 50%;" routerLink="/rdv"> Prendre un rendez-vous</button>
     </div>
 
     <!--form-->
@@ -19,30 +19,30 @@
       <div class="alert alert-success alert-dismissible" *ngIf="successMessage">{{errorMessage}}</div>
       <!--nom-->
       <div class="mb-3 form-group">
-        <label for="formGroupExampleInput" class="form-label">Veuillez Saisissez votre nom :</label>
+        <label for="formGroupExampleInput" class="form-label">Veuillez Saisir votre nom :</label>
         <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nuage"
           name="nom"
           formControlName="nom" >
       </div>
       <!--prenom-->
       <div class="mb-3 form-group">
-        <label for="formGroupExampleInput2" class="form-label">Veuillez Saisissez votre prénom :</label>
-        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="90x80..."
+        <label for="formGroupExampleInput2" class="form-label">Veuillez Saisir votre prénom :</label>
+        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Ciel"
           name="prenom"
           formControlName="prenom"
           >
       </div>
       <!--email-->
       <div class="mb-3 form-group">
-        <label for="exampleInputEm" class="form-label">Veuillez Saisissez votre adresse email de contact :</label>
-        <input type="email" class="form-control" id="exampleInputEm" aria-describedby="emailHelp"
+        <label for="exampleInputEm" class="form-label">Veuillez Saisir votre adresse email de contact :</label>
+        <input type="email" class="form-control" id="exampleInputEm" aria-describedby="emailHelp" placeholder="art@dessin.fr"
         name="email"
         formControlName="email">
       </div>
       <!--sujet-->
       <div class="mb-3 form-group">
-        <label for="formGroupExampleInputt" class="form-label">Veuillez Saisissez le sujet :</label>
-        <input type="text" class="form-control" id="formGroupExampleInputt" placeholder="90x80..."
+        <label for="formGroupExampleInputt" class="form-label">Veuillez Saisir le sujet :</label>
+        <input type="text" class="form-control" id="formGroupExampleInputt" placeholder="leonardo di vinci"
           name="sujet"
           formControlName="sujet"
           >
@@ -55,7 +55,7 @@
         <label for="floatingTextarea2">votre message</label>
       </div>
       <div style="text-align: center;">
-        <button class="btn btn-dark mt-1" style="width: 100%;" [disabled]="contactForm.invalid">Envoyer votre message</button>
+        <button class="btn  mt-1" style="width: 100%;" [disabled]="contactForm.invalid">Envoyer votre message</button>
       </div>
     </form>
 

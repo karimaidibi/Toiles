@@ -123,6 +123,8 @@ export class AddProductComponent implements OnInit, OnDestroy {
      }
      // comment je veux lire le fichier
      reader.readAsDataURL(f)
+      //scroll sur le bas
+      window.scroll(0,document.body.scrollHeight)
     }
   }
 

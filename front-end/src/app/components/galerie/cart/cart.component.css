@@ -13,10 +13,6 @@
   color: rgb(47, 179, 47);
 }
 
-button{
-  margin-left: 20px;
-}
-
 .resume{
   text-align: right;
   max-width: 700px;
@@ -27,6 +23,16 @@ button{
 .payer{
   max-width: 700px;
   margin-top: 1%;
-  background-color: black;
+  text-align: center;
+}
 
+.boutonDark{
+  width: 100%;
+  background-color: black;
+  color: white;
+}
+
+.boutonPetit{
+  background-color: black;
+  color: white;
 }

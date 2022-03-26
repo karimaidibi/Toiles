@@ -60,7 +60,8 @@ export class SignupComponent implements OnInit {
     })
     .catch((err)=>{
       this.loading = false
-      this.errorMessage = err.message
+      console.log(err.message)
+      this.errorMessage = "Cet adresse email est déjà utilisée par un autre utilisteur, veuillez choisir une autre."
     })
   }
 

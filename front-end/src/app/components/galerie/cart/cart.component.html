@@ -15,10 +15,10 @@
 </div>
 
 <!--si panier vide-->
-<div *ngIf="!items.length" style="text-align: center;">
+<div *ngIf="!items.length" class="container" style="text-align: center; max-width: 700px;">
   <h4>
     Votre panier est vide ! <br/>
-    <button type="button" class="btn btn-dark mt-3" routerLink="/galerie">Consulter la galerie</button>
+    <button type="button" class="btn boutonDark mt-3" routerLink="/galerie">Consulter la galerie</button>
   </h4>
 </div>
 
@@ -42,8 +42,8 @@
         <div class="p-2 d-flex justify-content-start">
           <input type="number" class="form-control" style="max-width: 60px;" value="{{item.quantity}}" disabled>
           <div class="btn-group-vertical" style="margin-left: -20px;">
-            <button type="button" class="btn btn-dark" (click)="addToCart(item.product)"><i class="bi bi-plus-lg"></i></button>
-            <button type="button" class="btn btn-dark" (click)="removeOne(item.product)"><i class="bi bi-dash-lg"></i></button>
+            <button type="button" class="btn boutonPetit" (click)="addToCart(item.product)"><i class="bi bi-plus-lg"></i></button>
+            <button type="button" class="btn boutonPetit" (click)="removeOne(item.product)"><i class="bi bi-dash-lg"></i></button>
           </div>
         </div>
         PRIX UNITAIRE: {{item.product.prix | currency : 'EUR'}}<br/>
@@ -61,13 +61,15 @@
   </div>
 </div>
 
-<div *ngIf="resume" class="container resume">
-  Quantité totale des produits : {{resume.quantity}}<br>
-  Prix total HT : {{resume.costHT | currency : 'EUR'}}<br>
-  Prix total Taxe : {{resume.costTaxe | currency : 'EUR'}}<br>
-  Prix Total TTC : {{resume.costTTC | currency : 'EUR'}}
-</div>
+  <div *ngIf="resume" class="container resume">
+    Quantité totale des produits : {{resume.quantity}}<br>
+    Prix total HT : {{resume.costHT | currency : 'EUR'}}<br>
+    Prix total Taxe : {{resume.costTaxe | currency : 'EUR'}}<br>
+    Prix Total TTC : {{resume.costTTC | currency : 'EUR'}}
+  </div>
+  <div *ngIf="items.length" class="container payer">
+    <button (click) = "placeOrder(cart)" type="button" class="btn boutonDark btn-lg">PAYER MA COMMANDE</button>
+  </div>
 
-<div *ngIf="items.length" class="contanier payer mx-auto">
-    <button (click) = "placeOrder(cart)" type="button" class="btn btn-lg" style="width: 100%;color: white;">PAYER MA COMMANDE</button>
-</div>
+
+

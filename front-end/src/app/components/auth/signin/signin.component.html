@@ -17,12 +17,15 @@
     <div>
       <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
 
-      <!--alert-->
-      <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+      <!--alert sign in error -->
+      <div *ngIf="errorMessage" class="container mx-auto alert alert-dark alert-dismissible fade show" role="alert" style="max-width: 700px;">
+        {{errorMessage}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
 
         <div class="mb-3">
           <label for="emailSignIn" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="emailSignIn" aria-describedby="emailHelp"
+          <input type="email" class="form-control" id="emailSignIn" aria-describedby="emailHelp" placeholder="Elisabeth@gmail.com"
           name="email"
           formControlName="email"
           >
@@ -36,14 +39,15 @@
           name="password"
           formControlName="password"
           >
+          <div id="emailHelp" class="form-text">Nous gardons bien les secrets :')</div>
         </div>
 
-        <button type="submit" class="btn btn-dark btn-lg" [disabled]="signInForm.invalid">Se connecter</button>
+        <button type="submit" class="btn boutonDark  btn-lg" [disabled]="signInForm.invalid">Se connecter</button>
 
         <hr class="hrHeader" style="width: 40%; height:3px;">
 
         <p>Pas encore client ? - Rejoignez-nous !</p>
-        <a role="button" class="btn btn-dark btn-lg" routerLink="/signup" data-bs-dismiss="offcanvas" aria-label="Close">créer mon compte</a>
+        <a role="button" class="btn boutonDark btn-lg" routerLink="/signup" data-bs-dismiss="offcanvas" aria-label="Close">créer mon compte</a>
 
       </form>
     </div>

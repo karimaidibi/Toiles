@@ -11,18 +11,23 @@
   <hr class="bg-gradient bg-dark hrHeader" style="width: 60%; height:0.5px;">
   <!--signup form-->
   <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-    <!--alert-->
-    <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+
+    <!--alert sign up error -->
+    <div *ngIf="errorMessage" class="container mx-auto alert alert-dark alert-dismissible fade show" role="alert" style="max-width: 700px;">
+      {{errorMessage}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
     <!-- first name-->
     <div class="mb-3 form-group">
-      <label for="firstname" class="form-label">Veuillez Saisissez votre prénom :</label>
+      <label for="firstname" class="form-label">Veuillez Saisir votre prénom :</label>
       <input type="text" class="form-control" id="firstname" placeholder="votre prénom (optionnel)"
         name="firstname"
         formControlName="firstname" >
     </div>
 
     <div class="mb-3 form-group">
-      <label for="lastname" class="form-label">Veuillez Saisissez votre nom :</label>
+      <label for="lastname" class="form-label">Veuillez Saisir votre nom :</label>
       <input type="text" class="form-control" id="lastname" placeholder="votre nom (optionnel)"
         name="lastname"
         formControlName="lastname"
@@ -31,7 +36,7 @@
 
     <div class="mb-3 form-group">
       <label for="mailInout" class="form-label">Email address</label>
-      <input type="email" class="form-control" id="mailInput" aria-describedby="emailHelp"
+      <input type="email" class="form-control" id="mailInput" aria-describedby="emailHelp" placeholder="email@gmail.com"
       name="email"
       formControlName="email">
 
@@ -46,6 +51,6 @@
     </div>
 
 
-    <button class="btn btn-dark" [disabled]="signUpForm.invalid">Créer mon compte</button>
+    <button class="btn boutonDark " [disabled]="signUpForm.invalid">Créer mon compte</button>
   </form>
 </div>

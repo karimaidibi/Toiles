@@ -1,6 +1,6 @@
 <mat-spinner class="mx-auto" *ngIf="loading" style="margin-top: 100px; margin-bottom:100px;"></mat-spinner>
 <!--les produits-->
-<div class="mt-4 ProduitsDiv">
+<div *ngIf="products" class="mt-4 ProduitsDiv">
   <!--alert-->
   <div *ngIf="adminMessage" class="container mx-auto alert alert-dark alert-dismissible fade show" role="alert" style="max-width: 700px;">
     {{adminMessage}}
@@ -10,26 +10,26 @@
   <!--row-->
   <div class="p-3 row row-cols-2 row-cols-lg-3 g-2 g-lg-5">
       <!--column-->
-      <div *ngFor="let product of products" class="col" >
-          <div class="box bg-body shadow-lg border hover13">
-            <!--router on click-->
-              <div class="cursorr" [routerLink]="['/single-product',product._id]">
-                <figure><img [src]="product.image" class="img-fluid" alt="..."></figure>
-              </div>
-              <!--infos-->
-              <h4 class="pt-3">{{product.produit}}</h4>
-              <p>{{product.type_produit}}</p>
-              <p class="prix">{{product.prix}} €</p>
-              <!--cart button-->
-              <button type="button" class="btn" (click)="addToCart(product)"><i class="bi bi-cart-plus-fill"></i></button>
-              <button type="button" class="btn" (click)="addToFavoris(product._id,product)"><i class="bi bi-emoji-heart-eyes mx-auto pt-3"></i></button>
-          </div>
-          <!-- if admin-->
-          <div class="btn-group pt-2" role="group" *ngIf="isAdmin">
-            <button  type="button" class="btn btn-dark" [routerLink]="['/edit-product', product._id]">Modifier</button>
-            <button  type="button" class="btn btn-dark" data-bs-toggle="modal" [attr.data-bs-target]="'#delete-product-'+product._id">Supprimer</button>
-            <app-delete-product-modal [product]="product"></app-delete-product-modal>
-          </div>
+      <div *ngFor="let product of products | typeProduit : filterProduct" class="col" >
+        <div class="box bg-body shadow-lg border hover13">
+          <!--router on click-->
+            <div class="cursorr" [routerLink]="['/single-product',product._id]">
+              <figure><img [src]="product.image" class="img-fluid" alt="..."></figure>
+            </div>
+            <!--infos-->
+            <h4 class="pt-3">{{product.produit}}</h4>
+            <p>{{product.type_produit}}</p>
+            <p class="prix">{{product.prix}} €</p>
+            <!--cart button-->
+            <button type="button" class="btn" (click)="addToCart(product)"><i class="bi bi-cart-plus-fill"></i></button>
+            <button type="button" class="btn" (click)="addToFavoris(product._id,product)"><i class="bi bi-emoji-heart-eyes mx-auto pt-3"></i></button>
+        </div>
+        <!-- if admin-->
+        <div class="btn-group pt-2" role="group" *ngIf="isAdmin">
+          <button  type="button" class="btn boutonDark" [routerLink]="['/edit-product', product._id]">Modifier</button>
+          <button  type="button" class="btn boutonDark" data-bs-toggle="modal" [attr.data-bs-target]="'#delete-product-'+product._id">Supprimer</button>
+          <app-delete-product-modal [product]="product"></app-delete-product-modal>
+        </div>
       </div>
   </div>
 </div>

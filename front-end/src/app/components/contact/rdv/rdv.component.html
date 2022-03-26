@@ -9,7 +9,7 @@
     <div style="text-align: center;">
       Tél : + 7 83 33 41 03 <br/>
       Mail : aidibikarim1999@hotmail.com<br/>
-      <button type="button" class="btn btn-lg btn-dark mt-1" style="width: 50%;" routerLink="/contact"> Vous n'etes pas sur ? contactez-nous </button>
+      <button type="button" class="btn btn-lg  mt-1" style="width: 50%;" routerLink="/contact"> Vous n'êtes pas sûr ? contactez-nous </button>
     </div>
 
     <!--form-->
@@ -42,7 +42,7 @@
       <!--prenom-->
       <div class="mb-3 form-group">
         <label for="formGroupExampleInput2" class="form-label">Veuillez saisir votre prénom :</label>
-        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="90x80..."
+        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Etoile"
           name="prenom"
           formControlName="prenom"
           >
@@ -50,14 +50,14 @@
       <!--email-->
       <div class="mb-3 form-group">
         <label for="exampleInputEm" class="form-label">Veuillez saisir votre adresse email de contact :</label>
-        <input type="email" class="form-control" id="exampleInputEm" aria-describedby="emailHelp"
+        <input type="email" class="form-control" id="exampleInputEm" aria-describedby="emailHelp" placeholder="Hippocrate@gmail.com"
         name="email"
         formControlName="email">
       </div>
       <!--sujet-->
       <div class="mb-3 form-group">
         <label for="formGroupExampleInputt" class="form-label">Veuillez saisir votre numéro de téléphone protable : </label>
-        <input type="text" class="form-control" id="formGroupExampleInputt" placeholder="90x80..."
+        <input type="text" class="form-control" id="formGroupExampleInputt" placeholder="+7 00 00 00 00"
           name="telephone"
           formControlName="telephone"
           >
@@ -70,7 +70,7 @@
         <label for="floatingTextarea2">votre message</label>
       </div>
       <div style="text-align: center;">
-        <button class="btn btn-dark mt-1" style="width: 100%;" [disabled]="rdvForm.invalid">Envoyer votre message</button>
+        <button class="btn  mt-1" style="width: 100%;" [disabled]="rdvForm.invalid">Envoyer votre demande de rendez-vous</button>
       </div>
     </form>
 

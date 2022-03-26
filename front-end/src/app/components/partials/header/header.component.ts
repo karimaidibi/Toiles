@@ -1,3 +1,5 @@
+import { ProductService } from './../../../services/product.service';
+import { GalerieComponent } from './../../galerie/galerie.component';
 import { CartService } from './../../../services/cart.service';
 import { Cart } from './../../../models/cart';
 import { BehaviorSubject } from 'rxjs';
@@ -20,7 +22,8 @@ export class HeaderComponent implements OnInit {
 
 
   constructor(private authService : AuthService,
-    private cartService: CartService) { }
+    private cartService: CartService,
+    private productService: ProductService) { }
 
   ngOnInit(): void {
     this.cartService.cart$.subscribe({
@@ -47,6 +50,10 @@ export class HeaderComponent implements OnInit {
         }
       }
     )
+  }
+
+  filterOnTypeProduit(type_produit:string){
+    this.productService.filterOnTypeProduit(type_produit)
   }
 
   logout(){

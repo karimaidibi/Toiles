@@ -30,6 +30,7 @@ import { FavorisComponent } from './components/galerie/favoris/favoris.component
 import { MonCompteComponent } from './components/user/mon-compte/mon-compte.component';
 import { CommandeComponent } from './components/user/commande/commande.component';
 import { SingleCommandeComponent } from './components/user/commande/single-commande/single-commande.component';
+import { TypeProduitPipe } from './pipes/type-produit.pipe';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { SingleCommandeComponent } from './components/user/commande/single-comma
     MonCompteComponent,
     CommandeComponent,
     SingleCommandeComponent,
+    TypeProduitPipe,
   ],
   imports: [
     BrowserModule,

@@ -23,3 +23,12 @@ img{
   width: auto;
   padding-bottom: 5%;
 }
+
+.boutonDark{
+  background-color: black;
+  color: white
+}
+
+.boutonSubmit{
+  width: 100%;
+}

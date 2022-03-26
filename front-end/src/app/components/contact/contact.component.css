@@ -29,3 +29,8 @@ img{
   width: auto;
   padding-bottom: 5%;
 }
+
+button{
+  background-color: black;
+  color: white;
+}

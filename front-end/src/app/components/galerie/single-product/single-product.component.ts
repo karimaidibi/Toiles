@@ -1,3 +1,5 @@
+import { FavorisService } from './../../../services/favoris.service';
+
 import { ArtistService } from './../../../services/artist.service';
 import { Artist } from './../../../models/artist';
 import { AuthService } from './../../../services/auth.service';
@@ -6,6 +8,7 @@ import { ProductService } from './../../../services/product.service';
 import { Product } from './../../../models/product';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-single-product',
@@ -16,6 +19,12 @@ export class SingleProductComponent implements OnInit {
 
   product!: Product
   isAuth!: boolean
+  userId!: any
+
+  //admin
+  adminMessage!: string
+  isAdmin: boolean = false
+  private adminId = environment.ADMIN_ID
 
   //Info artiste
   artist!: Artist
@@ -26,7 +35,8 @@ export class SingleProductComponent implements OnInit {
     private router :  Router,
     private cartService: CartService,
     private authService: AuthService,
-    private artistService: ArtistService) { }
+    private artistService: ArtistService,
+    private favorisService: FavorisService) { }
 
   ngOnInit(): void {
     // verify sign in then do the rest
@@ -68,7 +78,7 @@ export class SingleProductComponent implements OnInit {
       this.artist = artist
     })
     .catch((err)=>{
-      this.errorArtisteMessage = "Le nom de l'artiste est introuvable"
+      this.errorArtisteMessage = "l'artiste de cet objet artistique n'est pas renseigné :-) "
       console.log(err.message)
     })
   }
@@ -78,6 +88,13 @@ export class SingleProductComponent implements OnInit {
     this.authService.isAuth$.subscribe(
       (bool: boolean)=>{
         this.isAuth = bool
+        if(bool){
+          // get user id
+          this.userId = this.authService.userId
+          if(this.userId === this.adminId){
+            this.isAdmin = true
+          }
+        }
       }
     )
   }
@@ -90,5 +107,16 @@ export class SingleProductComponent implements OnInit {
     }
   }
 
+  addToFavoris(productId : string, product : Product){
+    if(this.isAuth  && !this.isAdmin){
+      this.favorisService.addToFavoris(productId, this.userId, product)
+    }else if(!this.isAdmin){
+      this.router.navigate(['/signup'])
+    }else{
+      this.adminMessage = "Créer un compte normal afin de pouvoir accéder à cette fonctionnalité :-) Merci !"
+      //scroll sur le haut
+      window.scroll(0,0)
+    }
+  }
 
 }

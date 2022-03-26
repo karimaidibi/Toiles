@@ -49,7 +49,14 @@ export class SigninComponent implements OnInit {
     })
     .catch((err)=>{
       this.loading = false
-      this.errorMessage = err.message
+      console.log(err.message)
+      if(err.status===404){
+        this.errorMessage = "l'adresse email est incorrecte"
+      }else if(err.status === 401){
+        this.errorMessage = "Votre mot de pass est incorrecte, veuillez réessayer"
+      }else{
+        this.errorMessage = err.message
+      }
     })
   }
 

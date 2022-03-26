@@ -12,6 +12,11 @@
   cursor: pointer;
 }
 
+.boutonDark{
+  background-color: black;
+  color: white;
+}
+
 
 .prix{
   text-align: end;

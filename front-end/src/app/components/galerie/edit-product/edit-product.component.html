@@ -8,62 +8,67 @@
   <!--image-->
   <div class="mb-3 form-group pt-3" style="text-align: center;">
     <label for="image" class="form-label">choisir une image</label>
-    <button type="button" (click)="filePicker.click()" class="btn btn-dark m-2">Modifier l'image</button>
+    <button type="button" (click)="filePicker.click()" class="btn boutonDark m-2">Modifier l'image</button>
     <input style="display: none;" type="file" class="form-control" id="image" aria-describedby="inputGroupFileAddon04" aria-label="Upload"
     #filePicker (change)="onImagePick($event)">
   </div>
   <!--formulaire-->
   <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
-    <!--alert-->
-    <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+
+    <!--alert error-->
+    <div *ngIf="errorMessage" class="container mx-auto alert alert-dark alert-dismissible fade show" role="alert" style="max-width: 700px;">
+      {{errorMessage}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
     <!--produit-->
     <div class="mb-3 form-group">
-      <label for="formGroupExampleInput" class="form-label">Veuillez Saisissez le nom du produit :</label>
-      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nuage"
+      <label for="formGroupExampleInput" class="form-label">Veuillez Saisir le nom du produit :</label>
+      <input type="text" class="form-control" id="formGroupExampleInput"
         name="produit"
         formControlName="produit" >
     </div>
     <!--format-->
     <div class="mb-3 form-group">
-      <label for="formGroupExampleInput2" class="form-label">Veuillez Saisissez le format du produit</label>
-      <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="90x80..."
+      <label for="formGroupExampleInput2" class="form-label">Veuillez Saisir le format du produit</label>
+      <input type="text" class="form-control" id="formGroupExampleInput2"
         name="format"
         formControlName="format"
         >
     </div>
     <!--type produit-->
     <div class="mb-3 form-group">
-      <label for="exampleInputEmail1" class="form-label">Veuillez Saisissez le type du produit</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+      <label for="exampleInputEmail1" class="form-label">Veuillez Saisir le type du produit</label>
+      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
       name="type_produit"
       formControlName="type_produit">
     </div>
     <!--prix-->
     <div class="mb-3 form-group">
-      <label for="exampleInputPassword1" class="form-label">Veuillez Saisissez le prix du produit</label>
-      <input type="number" class="form-control" id="exampleInputPassword1"
+      <label for="exampleInputPassword1" class="form-label">Veuillez Saisir le prix du produit</label>
+      <input type="number" min="0" class="form-control" id="exampleInputPassword1"
       name="prix"
       formControlName="prix">
     </div>
     <!--annee-->
     <div class="mb-3 form-group">
-      <label for="annee" class="form-label">Veuillez Saisissez l'annee</label>
-      <input type="number" class="form-control" id="annee" placeholder="artiste"
+      <label for="annee" class="form-label">Veuillez Saisir l'annee</label>
+      <input type="number" min="0" class="form-control" id="annee" placeholder="artiste"
         name="annee"
         formControlName="annee"
         >
     </div>
     <!--stock-->
     <div class="mb-3 form-group">
-      <label for="stock" class="form-label">Veuillez Saisissez le stock</label>
-      <input type="number" class="form-control" id="stock" placeholder="5"
+      <label for="stock" class="form-label">Veuillez Saisir le stock</label>
+      <input type="number" min="0" class="form-control" id="stock" placeholder="5"
         name="stock"
         formControlName="stock"
         >
     </div>
 
     <!--artiste-->
-    choisir l'artiste :
+    Veuillez choisir l'artiste :
     <select class="form-select" aria-label="Default select example"
     name="artistId"
     formControlName="artistId">
@@ -78,7 +83,7 @@
       <label for="floatingTextarea2">Description</label>
     </div>
 
-    <button class="btn btn-dark" [disabled]="productForm.invalid">Mettre à jour le produit</button>
+    <button class="btn boutonDark boutonSubmit" [disabled]="productForm.invalid">Mettre à jour le produit</button>
   </form>
 
     <!--preview image-->

@@ -18,6 +18,10 @@ export class ProductService {
   // observable
   products$ = new Subject<Product[]>()
 
+  //filter
+  filterProduct!: string
+  filterProduct$ = new Subject<string>()
+
   constructor(
     private http: HttpClient,
     private favorisService: FavorisService) { }
@@ -159,5 +163,15 @@ export class ProductService {
       })
     })
   }
+
+  filterOnTypeProduit(type_produit: string){
+    this.filterProduct = type_produit
+    this.emitFilterProduct()
+  }
+
+  emitFilterProduct(){
+    this.filterProduct$.next(this.filterProduct)
+  }
+
 
 }
