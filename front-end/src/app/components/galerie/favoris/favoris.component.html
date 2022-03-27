@@ -43,6 +43,15 @@
          n'avez      aucun
                               favoris :)
       </pre>
+      <pre *ngIf="!isAuth && !isAdmin">
+  Connectez-vous ou créer un compte
+    afin d'accéder à cette fonctionnalité :)
+      </pre>
+      <pre *ngIf="isAuth && isAdmin">
+  Vous etes admin ! créer un compte normal
+        afin d'accéder à cette
+           fonctionnalité :)
+      </pre>
     </div>
   </div>
 

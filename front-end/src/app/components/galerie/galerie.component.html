@@ -22,7 +22,8 @@
             <p class="prix">{{product.prix}} €</p>
             <!--cart button-->
             <button type="button" class="btn" (click)="addToCart(product)"><i class="bi bi-cart-plus-fill"></i></button>
-            <button type="button" class="btn" (click)="addToFavoris(product._id,product)"><i class="bi bi-emoji-heart-eyes mx-auto pt-3"></i></button>
+            <button type="button" class="btn" (click)="addToFavoris(product._id,product)" data-bs-toggle="offcanvas" href="#offcanvasFavoris" aria-controls="offcanvasFavoris"><i class="bi bi-emoji-heart-eyes mx-auto pt-3"></i></button>
+            <app-favoris></app-favoris>
         </div>
         <!-- if admin-->
         <div class="btn-group pt-2" role="group" *ngIf="isAdmin">
@@ -33,4 +34,3 @@
       </div>
   </div>
 </div>
-

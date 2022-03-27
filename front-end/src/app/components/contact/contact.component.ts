@@ -68,7 +68,7 @@ export class ContactComponent implements OnInit {
     })
     .catch((err)=>{
       this.loading = false
-      this.errorMessage = err.message
+      this.errorMessage = "Votre mail n'a pas été envoyé, veuillez réessayer."
       console.log(err.message)
       this.contactForm.reset()
     })

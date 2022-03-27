@@ -1,21 +1,23 @@
 <mat-spinner class="mx-auto" *ngIf="loading" style="margin-top: 100px; margin-bottom:100px;"></mat-spinner>
-<!--les produits-->
+<!--les artistes-->
 <div class="mt-4 ProduitsDiv">
   <!--row-->
-  <div class="p-3 row row-cols-2 row-cols-lg-3 g-2 g-lg-5">
-      <!--column-->
-      <div *ngFor="let artist of artists" class="col" >
-          <div class="box bg-body shadow-sm border hover13">
-            <!--router on click-->
-              <div class="cursorr">
-                <figure><img [src]="artist.image" class="img-fluid" alt="..."></figure>
-              </div>
-              <!--infos-->
-              <h4 class="pt-3">{{artist.nom}} {{artist.prenom}}</h4>
-              <!--cart button-->
-
-          </div>
-
+  <div class="p-3 row row-cols-2 row-cols-lg-3 g-2 g-lg-2">
+    <!--column-->
+    <div *ngFor="let artist of artists" class="col" >
+      <div class="card  bg-body shadow-sm border hover13" style="max-width: 23rem;">
+        <!--image-->
+        <div class="cursorr">
+          <figure>
+            <img [src]="artist.image" class="card-img-top" alt="...">
+          </figure>
+        </div>
+        <!--card body-->
+        <div class="card-body">
+          <h5 class="card-title">{{artist.nom}} {{artist.prenom}}</h5>
+          <p class="card-text">{{artist.descriptif}}</p>
+        </div>
       </div>
+    </div>
   </div>
 </div>

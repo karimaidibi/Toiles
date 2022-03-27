@@ -9,14 +9,25 @@
     <div style="text-align: center;">
       Tél : + 7 83 33 41 03 <br/>
       Mail : aidibikarim1999@hotmail.com<br/>
-      <button type="button" class="btn btn-lg  mt-1" style="width: 50%;" routerLink="/rdv"> Prendre un rendez-vous</button>
+      <button type="button" class="btn btn-lg boutonDark  mt-1" style="width: 50%;" routerLink="/rdv"> Prendre un rendez-vous</button>
     </div>
 
     <!--form-->
     <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
       <!--alert-->
-      <div class="alert alert-danger alert-dismissible" *ngIf="errorMessage">{{errorMessage}}</div>
-      <div class="alert alert-success alert-dismissible" *ngIf="successMessage">{{errorMessage}}</div>
+
+      <!--alert error -->
+      <div *ngIf="errorMessage" class="container mx-auto alert alert-dark alert-dismissible fade show" role="alert" style="max-width: 700px;">
+        {{errorMessage}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+
+      <!--alert success -->
+      <div *ngIf="successMessage" class="container mx-auto alert alert-dark alert-dismissible fade show" role="alert" style="max-width: 700px;">
+        {{successMessage}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+
       <!--nom-->
       <div class="mb-3 form-group">
         <label for="formGroupExampleInput" class="form-label">Veuillez Saisir votre nom :</label>
@@ -55,7 +66,7 @@
         <label for="floatingTextarea2">votre message</label>
       </div>
       <div style="text-align: center;">
-        <button class="btn  mt-1" style="width: 100%;" [disabled]="contactForm.invalid">Envoyer votre message</button>
+        <button class="btn boutonDark mt-1" style="width: 100%;" [disabled]="contactForm.invalid">Envoyer votre message</button>
       </div>
     </form>
 

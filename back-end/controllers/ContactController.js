@@ -11,10 +11,10 @@ module.exports = {
         service: 'gmail',
         auth: {
             user: 'karimaidibi@gmail.com',
-            pass: 'Az-Er-Ty$.'
+            pass: process.env.CODE_GMAIL
         }
     });
-    let contenu = 'nom : ' + req.body.nom + '\n' + 'prénom : ' + req.body.prenom + '\n\n contenu du message : \n\n' + req.body.message 
+    let contenu = 'nom : ' + req.body.nom + '\n' + 'prénom : ' + req.body.prenom + '\n' + 'email : ' + req.body.email +'\n\n contenu du message : \n\n' + req.body.message 
     // créer le soptions du mail
     let mailOptions = {
         from: req.body.email,

@@ -1,4 +1,13 @@
 <mat-spinner class="mx-auto" *ngIf="loading" style="margin-top: 100px; margin-bottom:100px;"></mat-spinner>
+
+<!--si commandes vide-->
+<div *ngIf="!commandes.length" class="container" style="text-align: center; max-width: 700px;">
+  <h4>
+    Vous n'avez pas encore effectué de commandes ! <br/>
+    <button type="button" class="btn boutonDark mt-3" routerLink="/galerie">Consulter la galerie</button>
+  </h4>
+</div>
+
 <!--les commandes-->
 <div class="mx-auto row row-cols-2 row-cols-lg-5 g-2">
   <!--column-->

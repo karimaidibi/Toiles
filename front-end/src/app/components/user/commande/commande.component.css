@@ -11,3 +11,9 @@
 .card:hover{
   cursor: pointer;
 }
+
+.boutonDark{
+  width: 100%;
+  background-color: black;
+  color: white;
+}

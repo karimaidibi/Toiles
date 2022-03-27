@@ -15,7 +15,7 @@ export class CommandeComponent implements OnInit, OnDestroy  {
 
   // commandes
   commandeSub!: Subscription
-  commandes!: Commande[]
+  commandes: Commande[] = []
 
   // auth
   userId!: any

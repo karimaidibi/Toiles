@@ -30,7 +30,8 @@
           <li class="list-group-item">STOCK : {{product.stock}}</li>
           <h4 class="price">{{product.prix  | currency:'EUR' }}</h4>
           <button class="btn boutonDark mx-auto" (click)="addToCart(product)">Ajouter au panier</button>
-          <button class="btn" type="button" (click)="addToFavoris(product._id,product)"><i class="bi bi-emoji-heart-eyes mx-auto pt-3"></i></button>
+          <button class="btn" type="button" (click)="addToFavoris(product._id,product)" data-bs-toggle="offcanvas" href="#offcanvasFavoris" aria-controls="offcanvasFavoris"><i class="bi bi-emoji-heart-eyes mx-auto pt-3"></i></button>
+          <app-favoris></app-favoris>
         </ul>
       </div>
   </div>

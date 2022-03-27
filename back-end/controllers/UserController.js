@@ -13,8 +13,10 @@ module.exports = {
                     message: err.message
                 })
             }
-            //create user 
+            //create user
+            const user = req.body
             const newUser = new UserModel({
+                ...user,
                 email: req.body.email,
                 password: hash
             })

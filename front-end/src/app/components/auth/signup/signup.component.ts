@@ -26,8 +26,8 @@ export class SignupComponent implements OnInit {
   initSignUpForm(){
     this.signUpForm = this.formBuilder.group({
       /*validator required, email, mail length, max length*/
-      firstname: this.formBuilder.control(""),
-      lastname: this.formBuilder.control(""),
+      prenom: this.formBuilder.control(""),
+      nom: this.formBuilder.control(""),
       email: this.formBuilder.control("", [Validators.required, Validators.email]),
       password: this.formBuilder.control("", [Validators.required,Validators.minLength(6)]),
 
@@ -45,15 +45,15 @@ export class SignupComponent implements OnInit {
     if(password){
       password = password.value
     }
-    let firstname = this.signUpForm.get('firstname');
-    if(firstname){
-      firstname = firstname.value
+    let prenom = this.signUpForm.get('prenom');
+    if(prenom){
+      prenom = prenom.value
     }
-    let lastname = this.signUpForm.get('lastname');
-    if(lastname){
-      lastname = lastname.value
+    let nom = this.signUpForm.get('nom');
+    if(nom){
+      nom = nom.value
     }
-    this.authService.signup(email,password,lastname,firstname)
+    this.authService.signup(email,password,nom,prenom)
     .then(()=>{
       this.loading = false
       this.router.navigate(['/home'])
