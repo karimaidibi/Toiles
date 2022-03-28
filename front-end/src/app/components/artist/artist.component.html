@@ -2,20 +2,24 @@
 <!--les artistes-->
 <div class="mt-4 ProduitsDiv">
   <!--row-->
-  <div class="p-3 row row-cols-2 row-cols-lg-3 g-2 g-lg-2">
+  <div class="p-3 row row-cols-1">
     <!--column-->
     <div *ngFor="let artist of artists" class="col" >
-      <div class="card  bg-body shadow-sm border hover13" style="max-width: 23rem;">
-        <!--image-->
-        <div class="cursorr">
-          <figure>
-            <img [src]="artist.image" class="card-img-top" alt="...">
-          </figure>
-        </div>
-        <!--card body-->
-        <div class="card-body">
-          <h5 class="card-title">{{artist.nom}} {{artist.prenom}}</h5>
-          <p class="card-text">{{artist.descriptif}}</p>
+      <div class="card bg-body shadow-sm border hover13" style="max-width: 100%;">
+        <div class="row g-0">
+          <!--image-->
+          <div class="col-md-4">
+            <figure>
+              <img [src]="artist.image" class="card-img-top" alt="...">
+            </figure>
+          </div>
+          <!--card body-->
+          <div class="col-md-8 desc">
+            <div class="card-body">
+              <h5 class="card-title">{{artist.nom}} {{artist.prenom}}</h5>
+              <p class="card-text">{{artist.descriptif}}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -5,16 +5,18 @@
 
 .col{
   text-align: center;
-  padding: 30px;
-}
-
-.cursorr{
-  cursor: pointer;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 5px;
 }
 
 img{
   padding: auto;
-  height : 300px
+  max-height : 400px;
+}
+
+.desc{
+  background-color: rgba(255, 228, 196, 0.646)
 }
 
 /* Flashing */
