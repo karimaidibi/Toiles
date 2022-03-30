@@ -26,6 +26,7 @@ export class HeaderComponent implements OnInit {
     private productService: ProductService) { }
 
   ngOnInit(): void {
+    // subscribe au cart du client
     this.cartService.cart$.subscribe({
       next: (cart: Cart)=>{
         this.resume = cart.resume
@@ -34,8 +35,9 @@ export class HeaderComponent implements OnInit {
         console.log(err)
       }
     })
+    // mettre a jour l'observable de cart
     this.cartService.emitCart()
-
+    // verivier si user est connecté
     this.VerifSignIn()
   }
 
@@ -52,6 +54,7 @@ export class HeaderComponent implements OnInit {
     )
   }
 
+  // permet d'utiliser les pipe afin de filtrer les produit par type
   filterOnTypeProduit(type_produit:string){
     this.productService.filterOnTypeProduit(type_produit)
   }

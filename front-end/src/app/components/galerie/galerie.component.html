@@ -21,7 +21,10 @@
             <p>{{product.type_produit}}</p>
             <p class="prix">{{product.prix}} €</p>
             <!--cart button-->
-            <button type="button" class="btn" (click)="addToCart(product)"><i class="bi bi-cart-plus-fill"></i></button>
+            <div class="popup" (click)="popup(product._id)">
+              <button type="button" class="btn" (click)="addToCart(product)" data-bs-toggle="tooltip" data-bs-placement="auto" title="ajouter au panier"><i class="bi bi-cart-plus-fill"></i></button>
+              <span class="popuptext" [id]="product._id">produit ajouté au panier !</span>
+            </div>
             <button type="button" class="btn" (click)="addToFavoris(product._id,product)" data-bs-toggle="offcanvas" href="#offcanvasFavoris" aria-controls="offcanvasFavoris"><i class="bi bi-emoji-heart-eyes mx-auto pt-3"></i></button>
             <app-favoris></app-favoris>
         </div>

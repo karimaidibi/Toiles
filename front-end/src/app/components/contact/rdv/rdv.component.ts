@@ -26,6 +26,7 @@ export class RdvComponent implements OnInit {
     this.initRdvForm()
   }
 
+  // initialiser le formulairee des rdv
   initRdvForm(){
     this.rdvForm = this.formBuilder.group({
       date: this.formBuilder.control(null,[Validators.required]),
@@ -38,6 +39,7 @@ export class RdvComponent implements OnInit {
     })
   }
 
+  // valider le formulaire de rdv
   onSubmit() :void{
     this.loading = true
     let rdv = new Rdv()

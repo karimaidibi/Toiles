@@ -24,6 +24,7 @@ export class DeleteProductModalComponent implements OnInit {
     this.userId = this.auth.userId
   }
 
+  // fonction qui permet de supprimer un produit
   deleteProduct(product: Product){
     // couche de securité admin
     if(this.adminId !== this.userId){

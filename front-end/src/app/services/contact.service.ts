@@ -15,6 +15,7 @@ export class ContactService {
     private router : Router
   ) { }
 
+  // Fonction qui permet de poster le formulaire de contact vers l'api
   sendMessage(contactModel : any){
     return new Promise((resolve,reject)=>{
       this.http.post(this.api+'/contact',contactModel).subscribe({

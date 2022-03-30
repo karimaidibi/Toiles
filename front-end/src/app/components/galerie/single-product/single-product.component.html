@@ -29,9 +29,18 @@
           <li *ngIf="artist" class="list-group-item">ARTISTE : {{artist.prenom}}  {{artist.nom}}</li>
           <li class="list-group-item">STOCK : {{product.stock}}</li>
           <h4 class="price">{{product.prix  | currency:'EUR' }}</h4>
-          <button class="btn boutonDark mx-auto" (click)="addToCart(product)">Ajouter au panier</button>
+          <div class="popup mx-auto" (click)="popup(product._id)">
+            <button class="btn boutonDark mx-auto" (click)="addToCart(product)">Ajouter au panier</button>
+            <span class="popuptext" [id]="product._id">produit ajouté au panier !</span>
+          </div>
           <button class="btn" type="button" (click)="addToFavoris(product._id,product)" data-bs-toggle="offcanvas" href="#offcanvasFavoris" aria-controls="offcanvasFavoris"><i class="bi bi-emoji-heart-eyes mx-auto pt-3"></i></button>
           <app-favoris></app-favoris>
+          <!-- if admin-->
+          <div class="btn-group pt-2" role="group" *ngIf="isAdmin">
+            <button  type="button" class="btn boutonDark" [routerLink]="['/edit-product', product._id]">Modifier</button>
+            <button  type="button" class="btn boutonDark" data-bs-toggle="modal" [attr.data-bs-target]="'#delete-product-'+product._id">Supprimer</button>
+            <app-delete-product-modal [product]="product"></app-delete-product-modal>
+          </div>
         </ul>
       </div>
   </div>

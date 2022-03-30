@@ -31,6 +31,7 @@ import { MonCompteComponent } from './components/user/mon-compte/mon-compte.comp
 import { CommandeComponent } from './components/user/commande/commande.component';
 import { SingleCommandeComponent } from './components/user/commande/single-commande/single-commande.component';
 import { TypeProduitPipe } from './pipes/type-produit.pipe';
+import { InfosPersonnellesComponent } from './components/user/mon-compte/infos-personnelles/infos-personnelles.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { TypeProduitPipe } from './pipes/type-produit.pipe';
     CommandeComponent,
     SingleCommandeComponent,
     TypeProduitPipe,
+    InfosPersonnellesComponent,
   ],
   imports: [
     BrowserModule,

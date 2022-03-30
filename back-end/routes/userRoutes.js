@@ -31,4 +31,7 @@ router.put('/favoris/delete',authAdmin,UserController.deleteOneItemInAllFavoris)
 // Afficher les commandes de l'utilisateur en question
 router.get('/:id/commandes',auth,UserController.showCommandes)
 
+//update les informations personnelles de l'utilisateur
+router.put('/:id',auth, UserController.updateUser);
+
 module.exports = router

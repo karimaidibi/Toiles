@@ -129,6 +129,7 @@ module.exports = {
 
   },
 
+  // fonction pour supprimer une toile
   remove: (req,res)=>{
     const id = req.params.id;
     ToileModel.findByIdAndRemove(id,(err,toile)=>{
@@ -160,6 +161,9 @@ module.exports = {
   }
   
 }
+
+
+
 
 // exports.list = (req,res)=>{
 //     ToileModel.find()

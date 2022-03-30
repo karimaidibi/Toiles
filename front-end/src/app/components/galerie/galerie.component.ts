@@ -86,6 +86,7 @@ export class GalerieComponent implements OnInit, OnDestroy {
     )
   }
 
+  // fonction qui permet de rajouter un article au cart
   addToCart(product: Product){
     if(this.isAuth){
       this.cartService.addToCart(product)
@@ -94,6 +95,7 @@ export class GalerieComponent implements OnInit, OnDestroy {
     }
   }
 
+  // fonction qui permet de rajouter un article au favoris
   addToFavoris(productId : string, product : Product){
     if(this.isAuth  && !this.isAdmin){
       this.favorisService.addToFavoris(productId, this.userId, product)
@@ -104,6 +106,11 @@ export class GalerieComponent implements OnInit, OnDestroy {
       //scroll sur le haut
       window.scroll(0,0)
     }
+  }
+
+  popup(productId : string){
+    var popup = document.getElementById(productId);
+    popup?.classList.toggle("show");
   }
 
   ngOnDestroy(): void {

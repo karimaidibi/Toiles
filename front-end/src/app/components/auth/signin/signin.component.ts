@@ -22,6 +22,7 @@ export class SigninComponent implements OnInit {
     this.initSignIpForm()
   }
 
+  // initialiser le formulaire de signin
   initSignIpForm(){
     this.signInForm = this.formBuilder.group({
       /*validator required, email, mail length, max length*/
@@ -30,6 +31,7 @@ export class SigninComponent implements OnInit {
     })
   }
 
+  // valider le formulaire
   onSubmit() :void{
     this.loading = true
 
@@ -60,7 +62,7 @@ export class SigninComponent implements OnInit {
     })
   }
 
-  // Function to reload the application
+  // Function pour reload the application
   refreshPage() {
     window.location.reload();
   }

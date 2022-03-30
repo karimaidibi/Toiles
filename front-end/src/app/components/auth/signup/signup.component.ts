@@ -23,6 +23,7 @@ export class SignupComponent implements OnInit {
     this.initSignUpForm()
   }
 
+  //initialiser le signup form
   initSignUpForm(){
     this.signUpForm = this.formBuilder.group({
       /*validator required, email, mail length, max length*/
@@ -34,6 +35,7 @@ export class SignupComponent implements OnInit {
     })
   }
 
+  // valider le sign up form
   onSubmit() :void{
     this.loading = true
 

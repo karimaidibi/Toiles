@@ -9,19 +9,21 @@ import { environment } from 'src/environments/environment';
 })
 export class ArtistService {
 
-    //URL de l'api stoqué comme variable d'environnement
-    api = environment.api;
-    // leq artistes
-    artists!: Artist[]
-    // observable artistes
-    artists$ = new Subject<Artist[]>()
+  //URL de l'api stoqué comme variable d'environnement
+  api = environment.api;
+  // leq artistes
+  artists!: Artist[]
+  // observable artistes
+  artists$ = new Subject<Artist[]>()
 
   constructor(private http: HttpClient) { }
 
+  // Fonction qui permet de mettre à jour l'observable artiste
   emitArtists(){
     this.artists$.next(this.artists)
   }
 
+  // Fonction qui permet de demander la liste de tous les artistes à partir de l'api de l'application backend
   getArtists(){
     this.http.get(this.api+'/artistes').subscribe({
       next:(data : any)=>{
@@ -39,6 +41,7 @@ export class ArtistService {
     })
   }
 
+  // Fonction qui permet de recuprer un artiste en particulier
   getArtistById(id: string){
     return new Promise((resolve,reject)=>{
       this.http.get(this.api+'/artistes/'+id).subscribe({

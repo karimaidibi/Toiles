@@ -18,10 +18,12 @@ export class RdvService {
 
   constructor(private http : HttpClient) { }
 
+  // mettre a jour la l'observable des rdvs
   emitRdvs(){
     this.rdvs$.next(this.rdvs)
   }
 
+  // récuperer la liste des rdvs à partir de l'api
   getRdvs(){
     this.http.get(this.api+'/rdv').subscribe({
       next: (data : any)=>{
@@ -38,6 +40,7 @@ export class RdvService {
     })
   }
 
+  // créer un nouveau rdv
   createNewRdv(rdv: Rdv){
     return new Promise((resolve,reject)=>{
       this.http.post(this.api+'/rdv',rdv).subscribe({

@@ -11,13 +11,4 @@ router.get('/',ArtistController.list);
 // récuperer un artiste en particulier
 router.get('/:id', ArtistController.show)
 
-//post
-//router.post('/',authAdmin,multerConfig,ArtistController.create)
-
-//update
-//router.put('/:id',authAdmin,multerConfig ,ArtistController.update)
-
-//delete
-//router.delete('/:id',authAdmin,ArtistController.remove)
-
 module.exports = router;

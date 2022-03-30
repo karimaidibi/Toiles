@@ -42,6 +42,7 @@ export class EditProductComponent implements OnInit, OnDestroy {
     this.artistService.getArtists()
   }
 
+  // subscribe à lobservable product et get infos
   getProductInfos() : void{
     this.loading = true
     this.route.params.subscribe({
@@ -75,6 +76,7 @@ export class EditProductComponent implements OnInit, OnDestroy {
     })
   }
 
+  // initialiser le formulaire du produit
   initproductForm(product : Product){
     this.productForm = this.formBuilder.group({
       /*validator required, email, mail length, max length*/
@@ -90,6 +92,7 @@ export class EditProductComponent implements OnInit, OnDestroy {
     })
   }
 
+  // valider el formulaire du produit
   onSubmit() :void{
     this.loading = true
     let product = new Product()
@@ -149,6 +152,7 @@ export class EditProductComponent implements OnInit, OnDestroy {
 
   }
 
+  // permet de recuperer limage que user a choisi depuis son pc et la mettre a jour dans le formulaire
   onImagePick(event: Event){
     // récupérer le fichier image
     let file = (event.target as HTMLInputElement)
@@ -175,6 +179,7 @@ export class EditProductComponent implements OnInit, OnDestroy {
     }
   }
 
+  // recuperer lartiste de ce produit en question
   initArtistsSubscription(){
     //get artists
     this.loading = true

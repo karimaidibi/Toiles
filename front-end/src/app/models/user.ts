@@ -4,7 +4,7 @@ export class User {
   username!: string
   nom!: string
   prenom!: string
-  codePostal!: string
+  codePostal!: number
   rue!: string
   ville!: string
   pays!: string

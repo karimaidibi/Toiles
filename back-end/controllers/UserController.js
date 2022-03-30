@@ -5,6 +5,7 @@ const CommandeModel = require('../models/CommandeModel')
 
 module.exports = {
 
+    // fonction qui permet de créer un compte utilisateur
     signup: (req, res)=>{
         bcrypt.hash(req.body.password, 10, (err,hash)=>{
             if(err){
@@ -36,6 +37,7 @@ module.exports = {
         })
     },
 
+    // fonction pour valider l'authetification de l'utilsateur
     login: (req, res)=>{
         //chercher lutilisateur en question
         UserModel.findOne({email: req.body.email}, (err, user)=>{
@@ -98,6 +100,7 @@ module.exports = {
         })
     },
 
+    // fonction pour recuperer la liste des utilisateurs
     list: (req, res)=>{
         UserModel.find((err, users)=>{
             if(err){
@@ -249,6 +252,38 @@ module.exports = {
                 result: commandes
             })
         })
+    },
+
+    // Update user infos
+    updateUser: (req,res)=>{
+        const id = req.params.id; // recupere id dans les paramteres de la requete
+        const reqBody = req.body // recuperer lobjet favoris
+        console.log(reqBody)
+        //update l'objet favoris de cet utilisateur
+        UserModel.updateOne({_id: id},
+            {$set:
+                {nom : reqBody.nom,
+                prenom: reqBody.prenom,
+                username: reqBody.username,
+                codePostal : reqBody.codePostal,
+                rue: reqBody.rue,
+                ville: reqBody.ville,
+                pays: reqBody.pays
+                }
+            }, (err,data)=>{
+            if(err){
+                return res.status(500).json({
+                status: 500,
+                message: 'Erreur when updating user'
+                })
+            }
+            // si tout ce passe bien
+            return res.status(200).json({
+                status: 200,
+                message: 'Objet updated success!'
+            })
+        })
+
     },
 
 

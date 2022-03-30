@@ -24,6 +24,7 @@ export class ContactComponent implements OnInit {
     this.initcontactForm()
   }
 
+  // initialiser le formulaire de contact
   initcontactForm(){
     this.contactForm = this.formBuilder.group({
       /*validator required, email, mail length, max length*/
@@ -35,7 +36,7 @@ export class ContactComponent implements OnInit {
     })
   }
 
-
+  // valider le formulaire de contact
   onSubmit() :void{
     this.loading = true
     let contactModel = {nom: '', prenom: '',email: '',sujet: '',message: ''}

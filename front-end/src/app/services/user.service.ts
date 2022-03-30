@@ -25,10 +25,12 @@ export class UserService {
   constructor(
     private http: HttpClient) { }
 
+  // fonction qui permet de mettre a jour l'observable des commandes
   emitCommandes(){
     this.commandes$.next(this.commandes)
   }
 
+  // recuperer la liste des commandes de user en question à partir de lapi
   getCommandes(userId: string){
     this.http.get(this.api+'/users/'+userId+'/commandes').subscribe({
       next:(data: any)=>{
@@ -48,6 +50,7 @@ export class UserService {
     })
   }
 
+  // recuperer une commande particulière de user
   getCommandeById(id: string){
     return new Promise((resolve,reject)=>{
       this.http.get(this.api+'/commande/'+id).subscribe({
@@ -66,10 +69,12 @@ export class UserService {
     })
   }
 
+  // mettre a jour l'observable user
   emitUser(){
     this.user$.next(this.user)
   }
 
+  // recuperer un user par son id
   getUserById(id: string){
       this.http.get(this.api+'/users/'+id).subscribe({
         next:(data: any)=>{
@@ -84,6 +89,31 @@ export class UserService {
           console.log(err.message)
         }
       })
+  }
+
+  // update les infos personnelles de l'utilisteur
+  updateUser(id: string, userInfo : {}){
+    return new Promise((resolve,reject)=>{
+      //put
+      this.http.put(this.api+'/users/'+id,userInfo).subscribe({
+        next:(data:any)=>{
+          if(data.status===200){
+            resolve(data)
+            this.getUserById(id)
+          }else{
+            console.log("ERROR updateUser : ",data.message)
+            reject(data.message)
+          }
+        },
+        error:(err)=>{
+          console.log("ERROR updateUser",err)
+          reject(err)
+        },
+        complete:()=>{
+          console.log("complete updateUser")
+        }
+      })
+    })
   }
 
 

@@ -37,6 +37,7 @@ export class FavorisService {
     this.favorisModel$.next(this.favorisModel)
   }
 
+  // Fonction qui permet d'ajouter un article à la liste de favoris du client en question
   addToFavoris(productId: string, userId : string, product : Product){
     //je vérifie si le produit est déja dans le array favoris
     const favoriIndex = this.favorisModel.favoris.indexOf(productId)
@@ -51,6 +52,7 @@ export class FavorisService {
     }
   }
 
+  // Fonction qui permet de mettre a jour la liste des favoris du client en question et de l'envoyer vers lapi
   updateFavoris(){
     if(typeof localStorage !== "undefined"){
       localStorage.setItem("favoris",JSON.stringify(this.favorisModel))
@@ -60,6 +62,7 @@ export class FavorisService {
     }
   }
 
+  // focntion qui permet d'initialiser le storage local des favoris sur le navigateur du client
   addToStorage(){
     if(typeof localStorage !== "undefined"){
       localStorage.setItem("favoris",JSON.stringify(this.favorisModel))
@@ -67,6 +70,7 @@ export class FavorisService {
     }
   }
 
+  // permet de supprimer un article favoris de la liste des favoris du client en question
   removeOne(productId: string){
     // je vérifie si le produit est déja dans le array favoris
     const favoriIndex = this.favorisModel.favoris.indexOf(productId)
@@ -77,6 +81,7 @@ export class FavorisService {
     }
   }
 
+  // permet d'envoyer la liste des favoris vers la base de données afin de la mettre a jour
   saveFavoris(){
     return new Promise((resolve,reject)=>{
       this.http.put(this.api+'/users/'+this.favorisModel.userId+'/favoris',this.favorisModel).subscribe({
@@ -98,6 +103,7 @@ export class FavorisService {
     })
   }
 
+  // permet de recuperer la liste des favoris du client en question a partir de l'api
   getFavoris(userId: any){
     this.http.get(this.api+'/users/'+userId+'/favoris').subscribe({
       next: (data: any)=>{
@@ -119,6 +125,7 @@ export class FavorisService {
     })
   }
 
+  // permet de mettre a jour la liste des favoris de touts les clients (dans la base de données)
   updateOneItemInAllFavoris( product : Product){
     const dict = {'product': product}
     return new Promise((resolve,reject)=>{
@@ -142,6 +149,7 @@ export class FavorisService {
     })
   }
 
+  // permet de mettre a jour la liste des favoris de touts les clients (dans la base de données)
   deleteOneItemInAllFavoris( productId : string){
     const dict = {'productId' : productId}
     return new Promise((resolve,reject)=>{

@@ -17,7 +17,7 @@ export class ArtistComponent implements OnInit, OnDestroy {
   constructor( private artistService: ArtistService) { }
 
   ngOnInit(): void {
-    //get artists
+    //get artists and subscribe
     this.artistSub = this.artistService.artists$.subscribe({
       next:(artists : any)=>{
         this.loading = false

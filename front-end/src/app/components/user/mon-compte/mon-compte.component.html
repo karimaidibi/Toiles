@@ -12,6 +12,7 @@
       <div *ngIf="!user.prenom && !user.nom">BONJOUR {{user.email}}</div>
     </div>
     <hr class="bg-gradient bg-dark hrHeader">
+    <a routerLink="/informationsPersonnelles" class="nav-link link-dark px-2" role="button">Mes informations personnelles</a>
     <a routerLink="/commandes" class="nav-link link-dark px-2" role="button">MES COMMANDES</a>
     <a (click)="logout()" class="nav-link link-dark px-2" role="button">DECONNEXION</a>
   </div>

@@ -47,6 +47,7 @@ export class SingleProductComponent implements OnInit {
 
   }
 
+  // subscribe au artist observable
   initProductSubscription() : void{
     // récuperer l'id depuis la route
     this.route.params.subscribe({
@@ -72,6 +73,7 @@ export class SingleProductComponent implements OnInit {
     })
   }
 
+  // recuperer l'artiste en question
   getArtistById(id: any){
     this.artistService.getArtistById(id)
     .then((artist: any)=>{
@@ -99,6 +101,7 @@ export class SingleProductComponent implements OnInit {
     )
   }
 
+  // ajouter le produit au cart
   addToCart(product: Product){
     if(this.isAuth){
       this.cartService.addToCart(product)
@@ -107,6 +110,7 @@ export class SingleProductComponent implements OnInit {
     }
   }
 
+  // ajouter l'artcicel au favoris
   addToFavoris(productId : string, product : Product){
     if(this.isAuth  && !this.isAdmin){
       this.favorisService.addToFavoris(productId, this.userId, product)
@@ -117,6 +121,11 @@ export class SingleProductComponent implements OnInit {
       //scroll sur le haut
       window.scroll(0,0)
     }
+  }
+
+  popup(productId : string){
+    var popup = document.getElementById(productId);
+    popup?.classList.toggle("show");
   }
 
 }

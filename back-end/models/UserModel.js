@@ -11,7 +11,7 @@ const userSchema = new Schema({
     username : {type : String, required : false},
     nom : {type : String, required : false},
     prenom: {type : String, required : false},
-    codePostal: {type : String, required : false},
+    codePostal: {type : Number, required : false},
     rue: {type : String, required : false},
     ville: {type : String, required : false},
     pays: {type : String, required : false},

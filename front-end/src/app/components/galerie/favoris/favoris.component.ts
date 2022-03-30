@@ -47,6 +47,7 @@ export class FavorisComponent implements OnInit, OnDestroy {
     )
   }
 
+  // subscribe a lobservable des favoris de user en question
   initFavoris() : void{
     this.favorisService.favorisModel$.subscribe({
       next: (favorisModel : Favoris)=>{
@@ -60,16 +61,19 @@ export class FavorisComponent implements OnInit, OnDestroy {
     this.favorisService.emitFavoris()
   }
 
+  // supprimer un favoris de user en question
   removeOne(productId: string){
     this.favorisService.removeOne(productId)
   }
 
+  // recuperer la liste des favoris de user en question
   getFavoris(){
     if(this.isAuth && !this.isAdmin){
       this.favorisService.getFavoris(this.userId)
     }
   }
 
+  // passer a la page commande avec les favoris de user en question
   passerLaCommande(){
     this.favorisModel.products.forEach(product=>{
       this.cartService.addToCart(product)

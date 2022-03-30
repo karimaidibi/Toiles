@@ -17,7 +17,7 @@ module.exports = (req, res, next)=>{
         const userStatus = decodeToken.userStatus
         console.log('userStatus : ',userStatus)
 
-        // verifier si dans la requete on a l identifiant de l utilisateur et si cette identifiant est conformer a celui dans le token
+        // verifier si dans la requete on a l identifiant de l utilisateur et si cette identifiant est conformer a celui dans le token et c'est admin
         if(req.body.userId){
             if(req.body.userId !== decodeToken.userId){
                 return res.status(401).json({

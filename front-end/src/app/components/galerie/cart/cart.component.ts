@@ -67,6 +67,7 @@ export class CartComponent implements OnInit, OnDestroy {
     )
   }
 
+  // ajouter un article au cart
   addToCart(product: Product){
     if(this.isAuth){
       this.cartService.addToCart(product)
@@ -75,6 +76,7 @@ export class CartComponent implements OnInit, OnDestroy {
     }
   }
 
+  // remove un article du cart
   removeOne(product : Product){
     if(this.isAuth){
       this.cartService.removeOne(product)
@@ -83,6 +85,7 @@ export class CartComponent implements OnInit, OnDestroy {
     }
   }
 
+  // remove le meme article plusieurs fois (totalement) du cart
   removeMany(product: Product){
     if(this.isAuth){
       this.cartService.removeMany(product)
@@ -91,6 +94,7 @@ export class CartComponent implements OnInit, OnDestroy {
     }
   }
 
+  // remove le cart entier
   removeCart(){
     if(this.isAuth){
       this.cartService.removeCart()
@@ -99,6 +103,7 @@ export class CartComponent implements OnInit, OnDestroy {
     }
   }
 
+  // commander
   placeOrder(cart : Cart){
     this.loading = true
     if(this.isAuth && this.userId && !this.isAdmin){

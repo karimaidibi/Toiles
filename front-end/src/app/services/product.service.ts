@@ -26,10 +26,12 @@ export class ProductService {
     private http: HttpClient,
     private favorisService: FavorisService) { }
 
+  // permet de mettre a jour l'observable des produits
   emitProducts(){
     this.products$.next(this.products)
   }
 
+  // recuperer la liste des produits à partir de l'api
   getProducts(){
     this.http.get(this.api+'/toiles').subscribe({
       next:(data : any)=>{
@@ -47,6 +49,7 @@ export class ProductService {
     })
   }
 
+  // recuperer un produit en particulier a partir de la bd
   getProductById(id: string){
     return new Promise((resolve,reject)=>{
       this.http.get(this.api+'/toiles/'+id).subscribe({
@@ -66,6 +69,7 @@ export class ProductService {
     })
   }
 
+  // creer un produit
   createNewProduct(product: Product, image: File){
     return new Promise((resolve,reject)=>{
       let productData: FormData = new FormData();
@@ -164,6 +168,7 @@ export class ProductService {
     })
   }
 
+  // fonction qui permet de filtrer les produits
   filterOnTypeProduit(type_produit: string){
     this.filterProduct = type_produit
     this.emitFilterProduct()

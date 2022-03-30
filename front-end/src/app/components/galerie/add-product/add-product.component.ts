@@ -33,6 +33,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
     this.artistService.getArtists()
   }
 
+  // initialiser le formulaire du produit
   initproductForm(){
     this.productForm = this.formBuilder.group({
       /*validator required, email, mail length, max length*/
@@ -49,6 +50,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
     })
   }
 
+  // valider el formulaire du produit
   onSubmit() :void{
     this.loading = true
     let product = new Product()
@@ -102,6 +104,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
     })
   }
 
+  // permet de recuperer limage que user a choisi depuis son pc et la mettre a jour dans le formulaire
   onImagePick(event: Event){
     // récupérer le fichier image
     let file = (event.target as HTMLInputElement)
@@ -128,6 +131,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
     }
   }
 
+  // recuperer lartiste de ce produit en question
   initArtistsSubscription(){
     //get artists
     this.loading = true

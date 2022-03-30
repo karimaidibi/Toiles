@@ -44,6 +44,7 @@ export class CartService {
     this.cart$.next(this.cart)
   }
 
+  // Fonction qui permet de rajouter un article au cart
   addToCart(product: Product){
     // verifier si le produit en parametre existe deja dans un item du panier client
     const item = this.cart.items.find(item => item.product._id === product._id)
@@ -63,6 +64,7 @@ export class CartService {
     this.updateCart();
   }
 
+  // Fonction qui permet de mettre a jour le cart, elle est utilisée dans la fonction addToCart
   updateCart(){
     this.cart.resume = {quantity: 0, costHT: 0, costTaxe: 0, costTTC: 0}
     this.cart.items.forEach((item)=>{
@@ -79,6 +81,7 @@ export class CartService {
     this.emitCart()
   }
 
+  // permet de supprimer un article du cart
   removeOne(product: Product){
     // verifier si le produit en parametre existe deja dans un item du panier client
     const item = this.cart.items.find(item => item.product._id === product._id)
@@ -97,6 +100,7 @@ export class CartService {
     }
   }
 
+  // permet de supprimer toutes les instances d'un articles dans le cart
   removeMany(product: Product){
     // verifier si le produit en parametre existe deja dans un item du panier client
     const item = this.cart.items.find(item => item.product._id === product._id)
@@ -111,11 +115,13 @@ export class CartService {
     }
   }
 
+  // fonction qui supprimer le cart entier
   removeCart(){
     this.cart.items = []
     this.updateCart()
   }
 
+  // fonction qui permet de poster une commande vers l'api'
   placeOrder(cart : Cart){
     return new Promise((resolve,reject)=>{
       this.http.post(this.api+'/commande',cart).subscribe({

@@ -1,0 +1,82 @@
+<mat-spinner class="mx-auto" *ngIf="loading" style="margin-top: 100px; margin-bottom:100px;"></mat-spinner>
+<div class="container" *ngIf="!loading">
+  <!--titre-->
+  <h3><strong>Informations personnelles</strong></h3>
+  <hr class="bg-gradient bg-dark hrHeader" style="width: 60%; height:0.5px;">
+
+  <!--infos personelles form-->
+  <form class="row g-3" [formGroup]="infosPersosForm" (ngSubmit)="onSubmit()">
+
+    <!--alert sign up error -->
+    <div *ngIf="errorMessage" class="container mx-auto alert alert-dark alert-dismissible fade show" role="alert" style="max-width: 700px;">
+      {{errorMessage}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <!--username-->
+    <div class="col-md-4">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" class="form-control" id="username"
+      name="username"
+      formControlName="username"
+      >
+    </div>
+
+    <!--nom-->
+    <div class="col-md-4">
+      <label for="nom" class="form-label">Nom</label>
+      <input type="text" class="form-control" id="nom"
+      name="nom"
+      formControlName="nom"
+      >
+    </div>
+
+    <!--prenom-->
+    <div class="col-md-4">
+      <label for="prenom" class="form-label">Prenom</label>
+      <input type="text" class="form-control" id="prenom"
+      name="prenom"
+      formControlName="prenom"
+      >
+    </div>
+
+    <!--Rue-->
+    <div class="col-md-4">
+      <label for="rue" class="form-label">Rue</label>
+      <input type="text" class="form-control" id="rue"
+      name="rue"
+      formControlName="rue"
+      >
+    </div>
+
+    <!--ville-->
+    <div class="col-md-4">
+      <label for="ville" class="form-label">ville</label>
+      <input type="text" class="form-control" id="ville"
+      name="ville"
+      formControlName="ville"
+      >
+    </div>
+
+    <!--codePostal-->
+    <div class="col-md-3">
+      <label for="codePostal" class="form-label">Code Postal</label>
+      <input type="number" min="0" class="form-control" id="codePostal"
+      name="codePostal"
+      formControlName="codePostal"
+      >
+    </div>
+
+    <!--pays-->
+    <div class="col-md-4">
+      <label for="pays" class="form-label">Pays</label>
+      <input type="text" class="form-control" id="pays"
+      name="pays"
+      formControlName="pays"
+      >
+    </div>
+
+
+    <button class="btn boutonDark " [disabled]="infosPersosForm.invalid">Modifier mes informations personnelles</button>
+  </form>
+</div>

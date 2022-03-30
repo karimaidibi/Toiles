@@ -73,7 +73,6 @@ export class CommandeComponent implements OnInit, OnDestroy  {
 
   ngOnDestroy(): void {
     this.commandeSub.unsubscribe()
-
-}
+  }
 
 }

@@ -1,3 +1,4 @@
+import { InfosPersonnellesComponent } from './components/user/mon-compte/infos-personnelles/infos-personnelles.component';
 import { SingleCommandeComponent } from './components/user/commande/single-commande/single-commande.component';
 import { CommandeComponent } from './components/user/commande/commande.component';
 import { ListRdvComponent } from './components/list-rdv/list-rdv.component';
@@ -32,6 +33,7 @@ const routes: Routes = [
   {path:'list-rdv', component: ListRdvComponent, canActivate: [AuthGuard]},
   {path:'commandes', component: CommandeComponent, canActivate: [AuthGuard]},
   {path:'commandes/:id', component: SingleCommandeComponent, canActivate: [AuthGuard]},
+  {path:'informationsPersonnelles', component: InfosPersonnellesComponent, canActivate: [AuthGuard]},
   {path:'', component: HomeComponent},
   // si tout ce qui es tavant ne marche pas faire ceci
   {path:'**', pathMatch:'full', redirectTo: 'not-found'},
